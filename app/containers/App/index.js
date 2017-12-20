@@ -15,7 +15,7 @@ export default function App() {
             <MenuIcon />
           </IconButton>
           <Typography type="title" color="inherit">
-            Title
+            Dashboard
           </Typography>
           <Button color="contrast">Login</Button>
         </Toolbar>
