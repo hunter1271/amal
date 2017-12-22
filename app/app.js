@@ -15,7 +15,11 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import FontFaceObserver from 'fontfaceobserver';
 import createHistory from 'history/createBrowserHistory';
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
+import blue from 'material-ui/colors/blue';
+
 import 'sanitize.css/sanitize.css';
+import 'typeface-roboto';
 
 // Import root app
 import App from 'containers/App';
@@ -24,6 +28,8 @@ import App from 'containers/App';
 import LanguageProvider from 'containers/LanguageProvider';
 
 import configureStore from './configureStore';
+
+import theme from './theme';
 
 // Import i18n messages
 import { translationMessages } from './i18n';
@@ -56,7 +62,9 @@ const render = (messages) => {
     <Provider store={store}>
       <LanguageProvider messages={messages}>
         <ConnectedRouter history={history}>
-          <App />
+          <MuiThemeProvider theme={theme}>
+            <App />
+          </MuiThemeProvider>
         </ConnectedRouter>
       </LanguageProvider>
     </Provider>,
