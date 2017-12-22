@@ -15,16 +15,15 @@ import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'react-router-redux';
 import FontFaceObserver from 'fontfaceobserver';
 import createHistory from 'history/createBrowserHistory';
-import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
-import blue from 'material-ui/colors/blue';
+import { MuiThemeProvider } from 'material-ui/styles';
 
 import 'sanitize.css/sanitize.css';
-import 'typeface-roboto';
 
 // Import root app
 import App from 'containers/App';
 
 // Import Language Provider
+
 import LanguageProvider from 'containers/LanguageProvider';
 
 import configureStore from './configureStore';
