@@ -13,8 +13,12 @@ import Typography from 'material-ui/Typography';
 import { LinearProgress } from 'material-ui/Progress';
 
 const styles = (theme) => ({
+  root: {
+    minWidth: '300px',
+  },
   dialogTitle: {
     paddingTop: theme.spacing.unit * 5,
+    paddingBottom: theme.spacing.unit,
     backgroundColor: theme.palette.primary[500],
   },
   dialogTitleTypography: {
@@ -44,13 +48,16 @@ SignIn.defaultProps = {
 
 function SignIn({ processing, classes }) {
   return (
-    <Dialog open>
-      <DialogTitle className={classes.dialogTitle}>
-        <Typography className={classes.dialogTitleTypography} type="heading">
+    <Dialog open className={classes.root}>
+      <DialogTitle className={classes.dialogTitle} disableTypography>
+        <Typography className={classes.dialogTitleTypography} type="headline">
           Welcome back
         </Typography>
       </DialogTitle>
-      {processing && <LinearProgress />}
+      <LinearProgress
+        mode={processing ? 'indeterminate' : 'determinate'}
+        value={100}
+      />
       <DialogContent>
         <TextField
           className={classes.textField}
@@ -59,6 +66,7 @@ function SignIn({ processing, classes }) {
           label="Email"
           type="email"
           fullWidth
+          disabled={processing}
         />
         <TextField
           className={classes.textField}
@@ -66,6 +74,7 @@ function SignIn({ processing, classes }) {
           label="Password"
           type="password"
           fullWidth
+          disabled={processing}
         />
       </DialogContent>
       <DialogActions className={classes.dialogActions}>
