@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
 
 import { Welcome } from '@storybook/react/demo';
-import { withKnobs, boolean } from '@storybook/addon-knobs';
+import { withKnobs, boolean, select } from '@storybook/addon-knobs';
 
 import { MuiThemeProvider } from 'material-ui/styles';
 import Button from 'material-ui/Button';
@@ -31,7 +31,15 @@ storiesOf('Button', module).add('with text', () => (
 ));
 
 storiesOf('Sign In', module).add('Sign in form', () => (
-  <SignIn processing={boolean('Processing', false)} />
+  <SignIn
+    processing={boolean('Processing', false)}
+    errorText={select(
+      'Error text',
+      [null, 'Invalid credentials', 'Your profile has been blocked'],
+      null
+    )}
+    onSignInClick={action('onSignInClick')}
+  />
 ));
 
 storiesOf('Navigation', module).add('Main bar', () => (

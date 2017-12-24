@@ -1,5 +1,5 @@
 import React from 'react';
-import { object, bool } from 'prop-types';
+import { object, bool, func, string } from 'prop-types';
 import { compose, pure } from 'recompose';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
@@ -8,6 +8,7 @@ import Dialog, {
   DialogActions,
   DialogContent,
   DialogTitle,
+  DialogContentText,
 } from 'material-ui/Dialog';
 import Typography from 'material-ui/Typography';
 import { LinearProgress } from 'material-ui/Progress';
@@ -40,13 +41,16 @@ const styles = (theme) => ({
 SignIn.propTypes = {
   processing: bool,
   classes: object.isRequired,
+  onSignInClick: func.isRequired,
+  errorText: string,
 };
 
 SignIn.defaultProps = {
   processing: false,
+  errorText: null,
 };
 
-function SignIn({ processing, classes }) {
+function SignIn({ processing, classes, onSignInClick, errorText }) {
   return (
     <Dialog open className={classes.root}>
       <DialogTitle className={classes.dialogTitle} disableTypography>
@@ -59,7 +63,9 @@ function SignIn({ processing, classes }) {
         value={100}
       />
       <DialogContent>
+        {errorText && <DialogContentText>{errorText}</DialogContentText>}
         <TextField
+          error={!!errorText}
           className={classes.textField}
           autoFocus
           id="email"
@@ -69,6 +75,7 @@ function SignIn({ processing, classes }) {
           disabled={processing}
         />
         <TextField
+          error={!!errorText}
           className={classes.textField}
           id="password"
           label="Password"
@@ -83,6 +90,7 @@ function SignIn({ processing, classes }) {
           raised
           color="primary"
           className={classes.button}
+          onClick={onSignInClick}
         >
           Sign In
         </Button>
