@@ -1,7 +1,7 @@
 import { fromJS, Map } from 'immutable';
 import { createDuck } from 'redux-duck';
 
-const ducks = createDuck('Auth');
+const ducks = createDuck('auth');
 
 export const SIGN_IN_REQUEST = ducks.defineType('SIGN_IN_REQUEST');
 export const SIGN_IN_SUCCESS = ducks.defineType('SIGN_IN_SUCCESS');
@@ -20,19 +20,15 @@ const initialState = fromJS({
 
 export default ducks.createReducer(
   {
-    [SIGN_IN_REQUEST]: (state) => {
-      state.set('loading', true).set('error', null);
-    },
-    [SIGN_IN_SUCCESS]: (state, { payload }) => {
+    [SIGN_IN_REQUEST]: (state) => state.set('loading', true).set('error', null),
+    [SIGN_IN_SUCCESS]: (state, { payload }) =>
       state
         .set('loading', false)
         .set('userData', Map(payload.userData))
         .set('token', payload.token)
-        .set('error', null);
-    },
-    [SIGN_IN_FAIL]: (state, { payload }) => {
-      state.set('loading', false).set('error', payload);
-    },
+        .set('error', null),
+    [SIGN_IN_FAIL]: (state, { payload }) =>
+      state.set('loading', false).set('error', payload),
   },
   initialState
 );

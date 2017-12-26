@@ -5,6 +5,7 @@ import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
+import SignIn from 'containers/SignInConnected';
 
 export default function App() {
   return (
@@ -20,6 +21,9 @@ export default function App() {
           <Button color="contrast">Login</Button>
         </Toolbar>
       </AppBar>
+      <div>
+        <SignIn />
+      </div>
     </div>
   );
 }

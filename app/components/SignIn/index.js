@@ -39,18 +39,18 @@ const styles = (theme) => ({
 });
 
 SignIn.propTypes = {
-  processing: bool,
+  loading: bool,
   classes: object.isRequired,
-  onSignInClick: func.isRequired,
+  onSubmit: func.isRequired,
   errorText: string,
 };
 
 SignIn.defaultProps = {
-  processing: false,
+  loading: false,
   errorText: null,
 };
 
-function SignIn({ processing, classes, onSignInClick, errorText }) {
+function SignIn({ loading, classes, onSubmit, errorText }) {
   return (
     <Dialog open className={classes.root}>
       <DialogTitle className={classes.dialogTitle} disableTypography>
@@ -59,7 +59,7 @@ function SignIn({ processing, classes, onSignInClick, errorText }) {
         </Typography>
       </DialogTitle>
       <LinearProgress
-        mode={processing ? 'indeterminate' : 'determinate'}
+        mode={loading ? 'indeterminate' : 'determinate'}
         value={100}
       />
       <DialogContent>
@@ -72,7 +72,7 @@ function SignIn({ processing, classes, onSignInClick, errorText }) {
           label="Email"
           type="email"
           fullWidth
-          disabled={processing}
+          disabled={loading}
         />
         <TextField
           error={!!errorText}
@@ -81,16 +81,16 @@ function SignIn({ processing, classes, onSignInClick, errorText }) {
           label="Password"
           type="password"
           fullWidth
-          disabled={processing}
+          disabled={loading}
         />
       </DialogContent>
       <DialogActions className={classes.dialogActions}>
         <Button
-          disabled={processing}
+          disabled={loading}
           raised
           color="primary"
           className={classes.button}
-          onClick={onSignInClick}
+          onClick={onSubmit}
         >
           Sign In
         </Button>

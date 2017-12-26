@@ -8,4 +8,4 @@ router.post('/authenticate', (request, response) => {
   });
 });
 
-export default router;
+module.exports = router;

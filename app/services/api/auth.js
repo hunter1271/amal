@@ -1,6 +1,6 @@
 const authenticate = (axios) => (userName, password) => {
   axios
-    .post('api/auth/token', {
+    .post('api/v1/auth/authenticate', {
       user_name: userName,
       password,
     })
