@@ -32,13 +32,13 @@ storiesOf('Button', module).add('with text', () => (
 
 storiesOf('Sign In', module).add('Sign in form', () => (
   <SignIn
-    processing={boolean('Processing', false)}
+    loading={boolean('Loading', false)}
     errorText={select(
       'Error text',
       [null, 'Invalid credentials', 'Your profile has been blocked'],
       null
     )}
-    onSignInClick={action('onSignInClick')}
+    onSubmit={action('onSubmit')}
   />
 ));
 
