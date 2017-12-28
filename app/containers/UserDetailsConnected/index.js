@@ -4,7 +4,7 @@ import { createStructuredSelector } from 'reselect';
 import {
   usernameSelector,
   accessTokenSelector,
-} from 'containers/SignInConnected/selectors';
+} from 'containers/AuthConnected/selectors';
 import UserDetails from 'components/UserDetails';
 
 const mapStateToProps = createStructuredSelector({

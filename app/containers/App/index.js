@@ -5,7 +5,7 @@ import Typography from 'material-ui/Typography';
 import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
-import SignIn from 'containers/SignInConnected';
+import Auth from 'containers/AuthConnected';
 
 export default function App() {
   return (
@@ -22,7 +22,7 @@ export default function App() {
         </Toolbar>
       </AppBar>
       <div>
-        <SignIn />
+        <Auth />
       </div>
     </div>
   );

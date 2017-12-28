@@ -20,8 +20,7 @@ function UserDetails({ username, firstName, lastName, accessToken }) {
   return (
     <Card>
       <CardContent>
-        <Typography type="headline">User details</Typography>
-        <Typography type="Title" gutterBottom>
+        <Typography type="title" gutterBottom>
           {firstName} {lastName}
         </Typography>
         <Typography type="subheading">Username: {username}</Typography>

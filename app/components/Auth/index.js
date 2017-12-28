@@ -38,19 +38,19 @@ const styles = (theme) => ({
   },
 });
 
-SignIn.propTypes = {
+Auth.propTypes = {
   loading: bool,
   classes: object.isRequired,
   onSubmit: func.isRequired,
   errorText: string,
 };
 
-SignIn.defaultProps = {
+Auth.defaultProps = {
   loading: false,
   errorText: null,
 };
 
-function SignIn({ loading, classes, onSubmit, errorText }) {
+function Auth({ loading, classes, onSubmit, errorText }) {
   return (
     <Dialog open className={classes.root}>
       <DialogTitle className={classes.dialogTitle} disableTypography>
@@ -99,4 +99,4 @@ function SignIn({ loading, classes, onSubmit, errorText }) {
   );
 }
 
-export default compose(pure, withTheme(), withStyles(styles))(SignIn);
+export default compose(pure, withTheme(), withStyles(styles))(Auth);

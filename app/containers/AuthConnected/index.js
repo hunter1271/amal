@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
-import SignIn from 'components/SignIn';
+import Auth from 'components/Auth';
 import reducer, { signInRequest } from './ducks';
 import saga from './sagas';
 import { loadingSelector, errorSelector } from './selectors';
@@ -25,4 +25,4 @@ export default compose(
   withSaga,
   connect(mapStateToProps, mapDispatchToProps),
   pure
-)(SignIn);
+)(Auth);

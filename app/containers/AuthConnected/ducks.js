@@ -12,9 +12,12 @@ export const signInSuccess = ducks.createAction(SIGN_IN_SUCCESS);
 export const signInFail = ducks.createAction(SIGN_IN_FAIL);
 
 const initialState = fromJS({
+  username: 'test',
+  password: 'pwd',
   loading: false,
   userData: null,
-  token: null,
+  access_token: null,
+  refresh_token: null,
   error: null,
 });
 
@@ -25,7 +28,8 @@ export default ducks.createReducer(
       state
         .set('loading', false)
         .set('userData', Map(payload.userData))
-        .set('token', payload.token)
+        .set('access_token', payload.accessToken)
+        .set('refresh_token', payload.refreshToken)
         .set('error', null),
     [SIGN_IN_FAIL]: (state, { payload }) =>
       state.set('loading', false).set('error', payload),

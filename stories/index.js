@@ -5,15 +5,16 @@ import { action } from '@storybook/addon-actions';
 import { linkTo } from '@storybook/addon-links';
 
 import { Welcome } from '@storybook/react/demo';
-import { withKnobs, boolean, select } from '@storybook/addon-knobs';
+import { withKnobs, boolean, select, text } from '@storybook/addon-knobs';
 
 import { MuiThemeProvider } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 
-import theme from '../app/theme';
-
-import SignIn from '../app/components/SignIn';
+import Auth from '../app/components/Auth';
 import MainBar from '../app/components/MainBar';
+import UserDetails from '../app/components/UserDetails';
+
+import theme from '../app/theme';
 
 const withTheme = (story) => (
   <MuiThemeProvider theme={theme}>{story()}</MuiThemeProvider>
@@ -30,17 +31,26 @@ storiesOf('Button', module).add('with text', () => (
   <Button onClick={action('clicked')}>Hello Button</Button>
 ));
 
-storiesOf('Sign In', module).add('Sign in form', () => (
-  <SignIn
-    loading={boolean('Loading', false)}
-    errorText={select(
-      'Error text',
-      [null, 'Invalid credentials', 'Your profile has been blocked'],
-      null
-    )}
-    onSubmit={action('onSubmit')}
-  />
-));
+storiesOf('Sign In', module)
+  .add('Auth form', () => (
+    <Auth
+      loading={boolean('Loading', false)}
+      errorText={select(
+        'Error text',
+        [null, 'Invalid credentials', 'Your profile has been blocked'],
+        null
+      )}
+      onSubmit={action('onSubmit')}
+    />
+  ))
+  .add('User details', () => (
+    <UserDetails
+      firstName={text('First name', 'Ahmad')}
+      lastName={text('Last name', 'al Hanbal')}
+      username={text('username', 'ahmad@mail.com')}
+      accessToken={text('Access token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9')}
+    />
+  ));
 
 storiesOf('Navigation', module).add('Main bar', () => (
   <MainBar

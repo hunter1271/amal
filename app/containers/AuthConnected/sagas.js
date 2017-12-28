@@ -11,7 +11,7 @@ export function* requestSaga() {
   const username = yield select(usernameSelector);
   const password = yield select(passwordSelector);
 
-  const { response } = yield call(api.auth.authenticate, username, password);
+  const { response } = yield call(api.auth.token, username, password);
 
   if (response) {
     yield put(signInSuccess(response));
