@@ -5,6 +5,7 @@ import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
+import Button from 'material-ui/Button';
 import MenuIcon from 'material-ui-icons/Menu';
 import { withStyles } from 'material-ui/styles';
 import AccountCircle from 'material-ui-icons/AccountCircle';
@@ -26,14 +27,24 @@ MainBar.propTypes = {
   classes: object.isRequired,
   onMenuClick: func,
   onAccountClick: func,
+  onSignInClick: func,
+  userData: object,
 };
 
 MainBar.defaultProps = {
   onMenuClick: () => {},
   onAccountClick: () => {},
+  onSignInClick: () => {},
+  userData: null,
 };
 
-function MainBar({ classes, onMenuClick, onAccountClick }) {
+function MainBar({
+  classes,
+  userData,
+  onMenuClick,
+  onAccountClick,
+  onSignInClick,
+}) {
   return (
     <AppBar position="static">
       <Toolbar>
@@ -49,9 +60,15 @@ function MainBar({ classes, onMenuClick, onAccountClick }) {
           Dashboard
         </Typography>
         <div>
-          <IconButton color="contrast" onClick={onAccountClick}>
-            <AccountCircle />
-          </IconButton>
+          {userData ? (
+            <IconButton color="contrast" onClick={onAccountClick}>
+              <AccountCircle />
+            </IconButton>
+          ) : (
+            <Button color="contrast" onClick={onSignInClick}>
+              Sign In
+            </Button>
+          )}
         </div>
       </Toolbar>
     </AppBar>

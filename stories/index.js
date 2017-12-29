@@ -52,9 +52,15 @@ storiesOf('Sign In', module)
     />
   ));
 
-storiesOf('Navigation', module).add('Main bar', () => (
-  <MainBar
-    onMenuClick={action('onMenuClick')}
-    onAccountClick={action('onAccountClick')}
-  />
-));
+storiesOf('Navigation', module).add('Main bar', () => {
+  const userData = boolean('Logged in', false)
+    ? { firstName: 'Rustam', lastName: 'Sagdi' }
+    : null;
+  return (
+    <MainBar
+      onMenuClick={action('onMenuClick')}
+      onAccountClick={action('onAccountClick')}
+      userData={userData}
+    />
+  );
+});

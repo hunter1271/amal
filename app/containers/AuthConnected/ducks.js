@@ -15,7 +15,7 @@ const initialState = fromJS({
   username: 'test',
   password: 'pwd',
   loading: false,
-  userData: null,
+  userData: {},
   access_token: null,
   refresh_token: null,
   error: null,

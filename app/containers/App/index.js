@@ -1,29 +1,19 @@
 import React from 'react';
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import Typography from 'material-ui/Typography';
-import Button from 'material-ui/Button';
-import IconButton from 'material-ui/IconButton';
-import MenuIcon from 'material-ui-icons/Menu';
+import { Switch, Route } from 'react-router-dom';
 import Auth from 'containers/AuthConnected';
+import UserDetails from 'containers/UserDetailsConnected';
+import Layout from './Layout';
 
 export default function App() {
   return (
-    <div>
-      <AppBar position="static">
-        <Toolbar>
-          <IconButton color="contrast" aria-label="Menu">
-            <MenuIcon />
-          </IconButton>
-          <Typography type="title" color="inherit">
-            Dashboard
-          </Typography>
-          <Button color="contrast">Login</Button>
-        </Toolbar>
-      </AppBar>
-      <div>
-        <Auth />
-      </div>
-    </div>
+    <Switch>
+      <Route strict path="/signin" component={Auth} />
+      <Layout>
+        <Switch>
+          <Route exact path="/" component={() => <p>Main</p>} />
+          <Route strict path="/account" component={UserDetails} />
+        </Switch>
+      </Layout>
+    </Switch>
   );
 }
