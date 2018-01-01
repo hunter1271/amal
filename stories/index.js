@@ -46,7 +46,6 @@ storiesOf('Sign In', module)
       onSubmit={action('onSubmit')}
     />
   ))
-  .add('User menu', () => <UserMenu />)
   .add('User details', () => (
     <UserDetails
       firstName={text('First name', 'Ahmad')}
@@ -57,6 +56,17 @@ storiesOf('Sign In', module)
   ));
 
 storiesOf('Navigation', module).add('Main bar', () => {
-  const userMenu = <UserMenu />;
+  const userMenu = (
+    <UserMenu
+      signedIn={boolean('Signed in', false)}
+      menuOpened={boolean('Open menu', false)}
+      signInPath={text('Sign in path', '/signin')}
+      accountPath={text('Account path', '/account')}
+      onMenuOpen={action('onMenuOpen')}
+      onMenuClose={action('onMenuClose')}
+      onSignOff={action('onSignOff')}
+    />
+  );
+
   return <MainBar onMenuClick={action('onMenuClick')} userMenu={userMenu} />;
 });

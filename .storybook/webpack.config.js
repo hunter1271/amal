@@ -5,11 +5,10 @@
 // IMPORTANT
 // When you add this file, we won't add the default configurations which is similar
 // to "React Create App". This only has babel loader to load JavaScript.
+const webpack = require('webpack');
 
 module.exports = {
-  plugins: [
-    // your custom plugins
-  ],
+  plugins: [new webpack.HotModuleReplacementPlugin()],
   module: {
     rules: [
       // add your custom rules.

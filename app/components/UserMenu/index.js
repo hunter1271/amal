@@ -9,6 +9,8 @@ import { Manager, Target, Popper } from 'react-popper';
 import { MenuItem, MenuList } from 'material-ui/Menu';
 import ClickAwayListener from 'material-ui/utils/ClickAwayListener';
 import Paper from 'material-ui/Paper';
+import Grow from 'material-ui/transitions/Grow';
+import Divider from 'material-ui/Divider';
 
 UserMenu.propTypes = {
   signedIn: bool,
@@ -17,6 +19,7 @@ UserMenu.propTypes = {
   onMenuOpen: func.isRequired,
   menuOpened: bool,
   onMenuClose: func.isRequired,
+  onSignOff: func.isRequired,
 };
 
 UserMenu.defaultProps = {
@@ -31,6 +34,7 @@ function UserMenu({
   onMenuOpen,
   menuOpened,
   onMenuClose,
+  onSignOff,
 }) {
   if (signedIn) {
     return (
@@ -45,16 +49,19 @@ function UserMenu({
             <AccountCircle />
           </IconButton>
         </Target>
-        <Popper placement="bottom-start" eventsEnabled={menuOpened}>
+        <Popper placement="bottom" eventsEnabled={menuOpened}>
           <ClickAwayListener onClickAway={onMenuClose}>
-            <Paper id="user-menu">
-              <MenuList role="menu">
-                <MenuItem component={NavLink} to={accountPath}>
-                  My account
-                </MenuItem>
-                <MenuItem>Logout</MenuItem>
-              </MenuList>
-            </Paper>
+            <Grow in={menuOpened}>
+              <Paper id="user-menu">
+                <MenuList role="menu" onClick={onMenuClose}>
+                  <MenuItem component={NavLink} to={accountPath}>
+                    My account
+                  </MenuItem>
+                  <Divider />
+                  <MenuItem onClick={onSignOff}>Sign off</MenuItem>
+                </MenuList>
+              </Paper>
+            </Grow>
           </ClickAwayListener>
         </Popper>
       </Manager>

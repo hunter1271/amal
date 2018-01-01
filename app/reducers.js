@@ -9,6 +9,7 @@ import { LOCATION_CHANGE } from 'react-router-redux';
 import globalReducer from 'containers/App/reducer';
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
 import authReducer from 'containers/AuthConnected/ducks';
+import userMenuReducer from 'containers/UserMenuConnected/ducks';
 
 /*
  * routeReducer
@@ -47,6 +48,7 @@ export default function createReducer(injectedReducers) {
     global: globalReducer,
     language: languageProviderReducer,
     auth: authReducer,
+    userMenu: userMenuReducer,
     ...injectedReducers,
   });
 }
