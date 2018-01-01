@@ -6,6 +6,7 @@ import { linkTo } from '@storybook/addon-links';
 
 import { Welcome } from '@storybook/react/demo';
 import { withKnobs, boolean, select, text } from '@storybook/addon-knobs';
+import StoryRouter from 'storybook-router';
 
 import { MuiThemeProvider } from 'material-ui/styles';
 import Button from 'material-ui/Button';
@@ -13,6 +14,7 @@ import Button from 'material-ui/Button';
 import Auth from '../app/components/Auth';
 import MainBar from '../app/components/MainBar';
 import UserDetails from '../app/components/UserDetails';
+import UserMenu from '../app/components/UserMenu';
 
 import theme from '../app/theme';
 
@@ -22,6 +24,7 @@ const withTheme = (story) => (
 
 addDecorator(withTheme);
 addDecorator(withKnobs);
+addDecorator(StoryRouter());
 
 storiesOf('Welcome', module).add('to Storybook', () => (
   <Welcome showApp={linkTo('Button')} />
@@ -43,6 +46,7 @@ storiesOf('Sign In', module)
       onSubmit={action('onSubmit')}
     />
   ))
+  .add('User menu', () => <UserMenu />)
   .add('User details', () => (
     <UserDetails
       firstName={text('First name', 'Ahmad')}
@@ -53,14 +57,6 @@ storiesOf('Sign In', module)
   ));
 
 storiesOf('Navigation', module).add('Main bar', () => {
-  const userData = boolean('Logged in', false)
-    ? { firstName: 'Rustam', lastName: 'Sagdi' }
-    : null;
-  return (
-    <MainBar
-      onMenuClick={action('onMenuClick')}
-      onAccountClick={action('onAccountClick')}
-      userData={userData}
-    />
-  );
+  const userMenu = <UserMenu />;
+  return <MainBar onMenuClick={action('onMenuClick')} userMenu={userMenu} />;
 });

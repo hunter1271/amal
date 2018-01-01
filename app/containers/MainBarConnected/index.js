@@ -1,20 +1,25 @@
-import { compose, pure } from 'recompose';
+import React from 'react';
+import { compose, pure, withProps } from 'recompose';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
 import { createStructuredSelector } from 'reselect';
-import { userDataSelector } from 'containers/AuthConnected/selectors';
+import {
+  signedInSelector,
+  userDataSelector,
+} from 'containers/AuthConnected/selectors';
 import MainBar from 'components/MainBar';
+import UserMenu from 'containers/UserMenuConnected';
 
 const mapsStateToProps = createStructuredSelector({
+  signedIn: signedInSelector,
   userData: userDataSelector,
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = () => ({
   onMenuClick: () => {},
-  onAccountClick: () => {},
-  onSignInClick: () => dispatch(push('/signin')),
 });
 
-export default compose(connect(mapsStateToProps, mapDispatchToProps), pure)(
-  MainBar
-);
+export default compose(
+  connect(mapsStateToProps, mapDispatchToProps),
+  withProps({ userMenu: <UserMenu /> }),
+  pure
+)(MainBar);

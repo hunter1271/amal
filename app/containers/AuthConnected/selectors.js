@@ -2,6 +2,10 @@ import { createSelector } from 'reselect';
 
 const authSelector = (globalState) => globalState.get('auth');
 
+export const signedInSelector = createSelector(authSelector, (state) =>
+  state.get('signedIn')
+);
+
 export const usernameSelector = createSelector(authSelector, (state) =>
   state.get('username')
 );
