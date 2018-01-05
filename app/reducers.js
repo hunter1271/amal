@@ -10,6 +10,7 @@ import globalReducer from 'containers/App/reducer';
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
 import authReducer from 'containers/AuthConnected/ducks';
 import userMenuReducer from 'containers/UserMenuConnected/ducks';
+import sidebarReducer from 'containers/SidebarConnected/ducks';
 
 /*
  * routeReducer
@@ -49,6 +50,7 @@ export default function createReducer(injectedReducers) {
     language: languageProviderReducer,
     auth: authReducer,
     userMenu: userMenuReducer,
+    sidebar: sidebarReducer,
     ...injectedReducers,
   });
 }

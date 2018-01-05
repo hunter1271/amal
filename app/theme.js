@@ -11,6 +11,10 @@ const theme = createMuiTheme({
   status: {
     danger: 'orange',
   },
+  sidebar: {
+    width: 250,
+    narrowWidth: 60,
+  },
 });
 
 export default theme;

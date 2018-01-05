@@ -1,46 +1,48 @@
 import React from 'react';
-import { object, func, node } from 'prop-types';
+import { object, node, func } from 'prop-types';
 import { compose, pure } from 'recompose';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
-import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
+import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
-
-const styles = {
-  root: {
-    width: '100%',
-  },
-  flex: {
-    flex: 1,
-  },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 10,
-  },
-};
 
 MainBar.propTypes = {
   classes: object.isRequired,
-  onMenuClick: func,
   userMenu: node,
+  onMenuClick: func,
 };
 
 MainBar.defaultProps = {
   onMenuClick: () => {},
   userMenu: null,
+  shift: false,
 };
 
-function MainBar({ classes, onMenuClick, userMenu }) {
+const styles = (theme) => ({
+  appBar: {
+    position: 'absolute',
+    zIndex: theme.zIndex.navDrawer + 1,
+  },
+  flex: {
+    flex: 1,
+  },
+  menuButton: {
+    marginLeft: -20,
+    marginRight: 20,
+  },
+});
+
+function MainBar({ classes, userMenu, onMenuClick }) {
   return (
-    <AppBar position="static">
+    <AppBar className={classes.appBar}>
       <Toolbar>
         <IconButton
-          color="contrast"
-          aria-label="Menu"
-          className={classes.menuButton}
           onClick={onMenuClick}
+          color="contrast"
+          aria-label="open drawer"
+          className={classes.menuButton}
         >
           <MenuIcon />
         </IconButton>

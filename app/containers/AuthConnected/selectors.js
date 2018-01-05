@@ -23,7 +23,7 @@ export const userDataSelector = createSelector(authSelector, (state) =>
 );
 
 export const accessTokenSelector = createSelector(authSelector, (state) =>
-  state.get('access_token')
+  state.get('accessToken')
 );
 
 export const errorSelector = createSelector(authSelector, (state) =>

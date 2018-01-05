@@ -15,6 +15,7 @@ import Auth from '../app/components/Auth';
 import MainBar from '../app/components/MainBar';
 import UserDetails from '../app/components/UserDetails';
 import UserMenu from '../app/components/UserMenu';
+import Sidebar from '../app/components/Sidebar';
 
 import theme from '../app/theme';
 
@@ -55,18 +56,29 @@ storiesOf('Sign In', module)
     />
   ));
 
-storiesOf('Navigation', module).add('Main bar', () => {
-  const userMenu = (
-    <UserMenu
-      signedIn={boolean('Signed in', false)}
-      menuOpened={boolean('Open menu', false)}
-      signInPath={text('Sign in path', '/signin')}
-      accountPath={text('Account path', '/account')}
-      onMenuOpen={action('onMenuOpen')}
-      onMenuClose={action('onMenuClose')}
-      onSignOff={action('onSignOff')}
-    />
-  );
+storiesOf('Navigation', module)
+  .add('Main bar', () => {
+    const userMenu = (
+      <UserMenu
+        signedIn={boolean('Signed in', false)}
+        menuOpened={boolean('Open menu', false)}
+        signInPath={text('Sign in path', '/signin')}
+        accountPath={text('Account path', '/account')}
+        onMenuOpen={action('onMenuOpen')}
+        onMenuClose={action('onMenuClose')}
+        onSignOff={action('onSignOff')}
+      />
+    );
 
-  return <MainBar onMenuClick={action('onMenuClick')} userMenu={userMenu} />;
-});
+    const sidebarOpen = boolean('Open sidebar', true);
+
+    return (
+      <div>
+        <MainBar onMenuClick={action('onMenuClick')} userMenu={userMenu} shift={sidebarOpen} />
+        <Sidebar open={sidebarOpen} />
+      </div>
+    );
+  })
+  .add('Sidebar', () => (
+    <Sidebar open={boolean('Open', true)} onToggle={action('onToggle')} />
+  ));

@@ -49,7 +49,7 @@ function UserMenu({
             <AccountCircle />
           </IconButton>
         </Target>
-        <Popper placement="bottom" eventsEnabled={menuOpened}>
+        <Popper placement="bottom-end" eventsEnabled={menuOpened}>
           <ClickAwayListener onClickAway={onMenuClose}>
             <Grow in={menuOpened}>
               <Paper id="user-menu">
