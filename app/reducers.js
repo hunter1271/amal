@@ -5,10 +5,11 @@
 import { fromJS } from 'immutable';
 import { combineReducers } from 'redux-immutable';
 import { LOCATION_CHANGE } from 'react-router-redux';
+import { reducer as formReducer } from 'redux-form';
 
 import globalReducer from 'containers/App/reducer';
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
-import authReducer from 'containers/AuthConnected/ducks';
+import authReducer from 'containers/Auth/ducks';
 import userMenuReducer from 'containers/UserMenuConnected/ducks';
 import sidebarReducer from 'containers/SidebarConnected/ducks';
 
@@ -51,6 +52,7 @@ export default function createReducer(injectedReducers) {
     auth: authReducer,
     userMenu: userMenuReducer,
     sidebar: sidebarReducer,
+    form: formReducer,
     ...injectedReducers,
   });
 }

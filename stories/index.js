@@ -1,4 +1,5 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 
 import { storiesOf, addDecorator } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
@@ -7,15 +8,17 @@ import { linkTo } from '@storybook/addon-links';
 import { Welcome } from '@storybook/react/demo';
 import { withKnobs, boolean, select, text } from '@storybook/addon-knobs';
 import StoryRouter from 'storybook-router';
+import createHistory from 'history/createBrowserHistory';
 
 import { MuiThemeProvider } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 
-import Auth from '../app/components/Auth';
+import SignInForm from '../app/components/SignInForm';
 import MainBar from '../app/components/MainBar';
 import UserDetails from '../app/components/UserDetails';
 import UserMenu from '../app/components/UserMenu';
 import Sidebar from '../app/components/Sidebar';
+import configureStore from '../app/configureStore';
 
 import theme from '../app/theme';
 
@@ -23,9 +26,17 @@ const withTheme = (story) => (
   <MuiThemeProvider theme={theme}>{story()}</MuiThemeProvider>
 );
 
+// Create redux store with history
+const initialState = {};
+const history = createHistory();
+const store = configureStore(initialState, history);
+
+const withStore = (story) => <Provider store={store}>{story()}</Provider>;
+
 addDecorator(withTheme);
 addDecorator(withKnobs);
 addDecorator(StoryRouter());
+addDecorator(withStore);
 
 storiesOf('Welcome', module).add('to Storybook', () => (
   <Welcome showApp={linkTo('Button')} />
@@ -35,9 +46,9 @@ storiesOf('Button', module).add('with text', () => (
   <Button onClick={action('clicked')}>Hello Button</Button>
 ));
 
-storiesOf('Sign In', module)
-  .add('Auth form', () => (
-    <Auth
+storiesOf('Auth', module)
+  .add('SignInForm', () => (
+    <SignInForm
       loading={boolean('Loading', false)}
       errorText={select(
         'Error text',
@@ -74,7 +85,11 @@ storiesOf('Navigation', module)
 
     return (
       <div>
-        <MainBar onMenuClick={action('onMenuClick')} userMenu={userMenu} shift={sidebarOpen} />
+        <MainBar
+          onMenuClick={action('onMenuClick')}
+          userMenu={userMenu}
+          shift={sidebarOpen}
+        />
         <Sidebar open={sidebarOpen} />
       </div>
     );

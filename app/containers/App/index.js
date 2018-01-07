@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Auth from 'containers/AuthConnected';
+import Auth from 'containers/Auth';
 import UserDetails from 'containers/UserDetailsConnected';
 import Layout from './Layout';
 

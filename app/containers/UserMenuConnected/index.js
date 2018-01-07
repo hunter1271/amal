@@ -1,10 +1,10 @@
 import { compose, pure, withProps } from 'recompose';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { signedInSelector } from 'containers/AuthConnected/selectors';
+import { signedInSelector } from 'containers/Auth/selectors';
 import UserMenu from 'components/UserMenu';
 import { withRouter } from 'react-router';
-import { signOff } from 'containers/AuthConnected/ducks';
+import { signOff } from 'containers/Auth/ducks';
 import { userMenuOpen, userMenuClose } from './ducks';
 import { openedSelector } from './selectors';
 
