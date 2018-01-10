@@ -19,6 +19,7 @@ import Dialog, {
 } from 'material-ui/Dialog';
 import Typography from 'material-ui/Typography';
 import { LinearProgress } from 'material-ui/Progress';
+import { isEmail } from 'utils/validators';
 
 const styles = (theme) => ({
   root: {
@@ -49,6 +50,7 @@ SignInForm.propTypes = {
   loading: bool,
   classes: object.isRequired,
   onSubmit: func.isRequired,
+  handleSubmit: func.isRequired,
   errorText: string,
 };
 
@@ -57,9 +59,9 @@ SignInForm.defaultProps = {
   errorText: null,
 };
 
-function SignInForm({ loading, classes, onSubmit, errorText }) {
+function SignInForm({ loading, classes, onSubmit, handleSubmit, errorText }) {
   return (
-    <Form onSubmit={onSubmit}>
+    <Form onSubmit={handleSubmit(onSubmit)}>
       <Dialog open className={classes.root}>
         <DialogTitle className={classes.dialogTitle} disableTypography>
           <Typography className={classes.dialogTitleTypography} type="headline">
@@ -81,12 +83,12 @@ function SignInForm({ loading, classes, onSubmit, errorText }) {
             type="email"
             fullWidth
             disabled={loading}
+            validate={[isEmail]}
           />
           <Field
             name="password"
             component={TextField}
             className={classes.textField}
-            id="password"
             label="Password"
             type="password"
             fullWidth
