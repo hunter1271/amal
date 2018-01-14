@@ -13,9 +13,12 @@ const mapStateToProps = createStructuredSelector({
   errorText: errorSelector,
 });
 
-const mapDispatchToProps = {
-  onSubmit: signInRequest,
-};
+const mapDispatchToProps = (dispatch) => ({
+  onSubmit: (values) =>
+    new Promise((resolve, reject) => {
+      dispatch(signInRequest({ values, resolve, reject }));
+    }),
+});
 
 const withReducer = injectReducer({ key: 'auth', reducer });
 const withSaga = injectSaga({ key: 'auth', saga });

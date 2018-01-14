@@ -19,7 +19,7 @@ import Dialog, {
 } from 'material-ui/Dialog';
 import Typography from 'material-ui/Typography';
 import { LinearProgress } from 'material-ui/Progress';
-import { isEmail } from 'utils/validators';
+import { isEmail, isRequired } from 'utils/validators';
 
 const styles = (theme) => ({
   root: {
@@ -47,21 +47,30 @@ const styles = (theme) => ({
 });
 
 SignInForm.propTypes = {
-  loading: bool,
+  submitting: bool,
   classes: object.isRequired,
   onSubmit: func.isRequired,
   handleSubmit: func.isRequired,
   errorText: string,
+  invalid: bool,
 };
 
 SignInForm.defaultProps = {
-  loading: false,
+  submitting: false,
   errorText: null,
+  invalid: false,
 };
 
-function SignInForm({ loading, classes, onSubmit, handleSubmit, errorText }) {
+function SignInForm({
+  submitting,
+  classes,
+  onSubmit,
+  handleSubmit,
+  errorText,
+  invalid,
+}) {
   return (
-    <Form onSubmit={handleSubmit(onSubmit)}>
+    <Form onSubmit={handleSubmit}>
       <Dialog open className={classes.root}>
         <DialogTitle className={classes.dialogTitle} disableTypography>
           <Typography className={classes.dialogTitleTypography} type="headline">
@@ -69,7 +78,7 @@ function SignInForm({ loading, classes, onSubmit, handleSubmit, errorText }) {
           </Typography>
         </DialogTitle>
         <LinearProgress
-          mode={loading ? 'indeterminate' : 'determinate'}
+          mode={submitting ? 'indeterminate' : 'determinate'}
           value={100}
         />
         <DialogContent>
@@ -82,8 +91,8 @@ function SignInForm({ loading, classes, onSubmit, handleSubmit, errorText }) {
             label="Email"
             type="email"
             fullWidth
-            disabled={loading}
-            validate={[isEmail]}
+            disabled={submitting}
+            validate={[isRequired, isEmail]}
           />
           <Field
             name="password"
@@ -92,16 +101,18 @@ function SignInForm({ loading, classes, onSubmit, handleSubmit, errorText }) {
             label="Password"
             type="password"
             fullWidth
-            disabled={loading}
+            disabled={submitting}
+            validate={[isRequired]}
           />
         </DialogContent>
         <DialogActions className={classes.dialogActions}>
           <Button
-            disabled={loading}
+            disabled={submitting || invalid}
             raised
             color="primary"
             className={classes.button}
             type="submit"
+            onClick={handleSubmit(onSubmit)}
           >
             Sign In
           </Button>

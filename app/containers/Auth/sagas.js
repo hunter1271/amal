@@ -1,23 +1,26 @@
-import { call, getContext, put, takeLatest, select } from 'redux-saga/effects';
+import { call, getContext, put, takeLatest } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
-import { usernameSelector, passwordSelector } from './selectors';
 import { signInSuccess, signInFail, SIGN_IN_REQUEST } from './ducks';
 
 export default function* () {
   yield takeLatest(SIGN_IN_REQUEST, requestSaga);
 }
 
-export function* requestSaga() {
+export function* requestSaga({ payload: { values, resolve, reject } }) {
   const api = yield getContext('api');
-  const username = yield select(usernameSelector);
-  const password = yield select(passwordSelector);
 
-  const { response } = yield call(api.auth.token, username, password);
+  const { response } = yield call(
+    api.auth.token,
+    values.username,
+    values.password
+  );
 
   if (response) {
     yield put(signInSuccess(response));
+    resolve();
     yield put(push('/'));
   } else {
     yield put(signInFail('Authentication error'));
+    reject();
   }
 }
