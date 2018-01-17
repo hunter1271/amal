@@ -19,6 +19,7 @@ import UserDetails from '../app/components/UserDetails';
 import UserMenu from '../app/components/UserMenu';
 import Sidebar from '../app/components/Sidebar';
 import configureStore from '../app/configureStore';
+import LocaleToggle from '../app/components/LocaleToggle';
 
 import theme from '../app/theme';
 
@@ -96,4 +97,14 @@ storiesOf('Navigation', module)
   })
   .add('Sidebar', () => (
     <Sidebar open={boolean('Open', true)} onToggle={action('onToggle')} />
+  ))
+  .add('Locale toggle', () => (
+    <LocaleToggle
+      options={['eng', 'ru']}
+      messages={{ eng: 'English', ru: 'Russian' }}
+      open={boolean('Open', true)}
+      onChange={action('onToggle')}
+      onMenuOpen={action('onMenuOpen')}
+      onMenuClose={action('onMenuClose')}
+    />
   ));
