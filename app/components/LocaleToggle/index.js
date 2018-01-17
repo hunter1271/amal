@@ -1,6 +1,6 @@
 import React from 'react';
 import { compose, pure } from 'recompose';
-import { array, bool, func, object } from 'prop-types';
+import { array, bool, func, object, string } from 'prop-types';
 import IconButton from 'material-ui/IconButton';
 import Language from 'material-ui-icons/Language';
 import { Manager, Target, Popper } from 'react-popper';
@@ -10,11 +10,12 @@ import Paper from 'material-ui/Paper';
 import Grow from 'material-ui/transitions/Grow';
 
 LocaleToggle.propTypes = {
+  value: string,
   options: array.isRequired,
   messages: object,
   open: bool,
-  onMenuOpen: func.isRequired,
-  onMenuClose: func.isRequired,
+  onOpen: func.isRequired,
+  onClose: func.isRequired,
   onChange: func.isRequired,
 };
 
@@ -23,19 +24,21 @@ LocaleToggle.defaultProps = {
 };
 
 function LocaleToggle({
+  value,
   options,
   messages,
-  onMenuOpen,
-  onMenuClose,
+  onOpen,
+  onClose,
   open,
   onChange,
+  ...props
 }) {
   return (
     <Manager>
       <Target>
         <IconButton
-          // color="contrast"
-          onClick={onMenuOpen}
+          {...props}
+          onClick={onOpen}
           aria-owns={open ? 'locale-menu' : null}
           aria-haspopup="true"
         >
@@ -43,13 +46,16 @@ function LocaleToggle({
         </IconButton>
       </Target>
       <Popper placement="bottom-start" eventsEnabled={open}>
-        <ClickAwayListener onClickAway={onMenuClose}>
+        <ClickAwayListener onClickAway={onClose}>
           <Grow in={open}>
             <Paper id="locale-menu">
-              <MenuList role="menu" onClick={onMenuClose}>
+              <MenuList role="menu" onClick={onClose}>
                 {options &&
                   options.map((option) => (
-                    <MenuItem onClick={() => onChange(option)}>
+                    <MenuItem
+                      selected={option === value}
+                      onClick={() => onChange(option)}
+                    >
                       {messages[option]}
                     </MenuItem>
                   ))}

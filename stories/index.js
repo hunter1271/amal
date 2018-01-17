@@ -100,11 +100,12 @@ storiesOf('Navigation', module)
   ))
   .add('Locale toggle', () => (
     <LocaleToggle
-      options={['eng', 'ru']}
-      messages={{ eng: 'English', ru: 'Russian' }}
+      value={select('Current locale', ['eng', 'tat', 'ru'], 'eng')}
+      options={['eng', 'tat', 'ru']}
+      messages={{ eng: 'English', tat: 'Tatar', ru: 'Russian' }}
       open={boolean('Open', true)}
       onChange={action('onToggle')}
-      onMenuOpen={action('onMenuOpen')}
-      onMenuClose={action('onMenuClose')}
+      onOpen={action('onOpen')}
+      onClose={action('onClose')}
     />
   ));
