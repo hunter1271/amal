@@ -11,16 +11,16 @@ export function* requestSaga({ payload: { values, resolve, reject } }) {
 
   const { response } = yield call(
     api.auth.token,
-    values.username,
+    values.email,
     values.password
   );
 
   if (response) {
     yield put(signInSuccess(response));
-    resolve();
+    resolve('Sign in success');
     yield put(push('/'));
   } else {
     yield put(signInFail('Authentication error'));
-    reject();
+    reject('Sign in failed');
   }
 }
