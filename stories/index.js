@@ -23,6 +23,8 @@ import LocaleToggle from '../app/components/LocaleToggle';
 
 import theme from '../app/theme';
 
+import UserListStory from './UserListStory';
+
 const withTheme = (story) => (
   <MuiThemeProvider theme={theme}>{story()}</MuiThemeProvider>
 );
@@ -109,3 +111,5 @@ storiesOf('Navigation', module)
       onClose={action('onClose')}
     />
   ));
+
+storiesOf('Admin', module).add('User list', UserListStory);
