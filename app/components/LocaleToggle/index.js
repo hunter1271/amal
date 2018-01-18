@@ -8,6 +8,7 @@ import { MenuItem, MenuList } from 'material-ui/Menu';
 import ClickAwayListener from 'material-ui/utils/ClickAwayListener';
 import Paper from 'material-ui/Paper';
 import Grow from 'material-ui/transitions/Grow';
+import { injectIntl, intlShape } from 'react-intl';
 
 LocaleToggle.propTypes = {
   value: string,
@@ -17,6 +18,7 @@ LocaleToggle.propTypes = {
   onOpen: func.isRequired,
   onClose: func.isRequired,
   onChange: func.isRequired,
+  intl: intlShape.isRequired,
 };
 
 LocaleToggle.defaultProps = {
@@ -31,6 +33,7 @@ function LocaleToggle({
   onClose,
   open,
   onChange,
+  intl,
   ...props
 }) {
   return (
@@ -53,10 +56,11 @@ function LocaleToggle({
                 {options &&
                   options.map((option) => (
                     <MenuItem
+                      key={option}
                       selected={option === value}
                       onClick={() => onChange(option)}
                     >
-                      {messages[option]}
+                      {intl.formatMessage(messages[option])}
                     </MenuItem>
                   ))}
               </MenuList>
@@ -68,4 +72,4 @@ function LocaleToggle({
   );
 }
 
-export default compose(pure)(LocaleToggle);
+export default compose(injectIntl, pure)(LocaleToggle);
