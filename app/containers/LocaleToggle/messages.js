@@ -7,7 +7,7 @@ export default defineMessages({
   },
   tat: {
     id: 'amal.LocaleToggle.tat',
-    defaultMessage: 'Tatar',
+    defaultMessage: 'Татар',
   },
   ru: {
     id: 'amal.LocaleToggle.ru',

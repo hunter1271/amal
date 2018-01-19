@@ -3,8 +3,10 @@ import { fromJS } from 'immutable';
 
 const ducks = createDuck('localeToggle');
 
-export const TOGGLE_OPEN = ducks.defineType('TOGGLE_OPEN');
-export const toggleOpen = ducks.createAction(TOGGLE_OPEN);
+export const OPEN = ducks.defineType('OPEN');
+export const CLOSE = ducks.defineType('CLOSE');
+export const open = ducks.createAction(OPEN);
+export const close = ducks.createAction(CLOSE);
 
 const initialState = fromJS({
   open: false,
@@ -12,7 +14,8 @@ const initialState = fromJS({
 
 export default ducks.createReducer(
   {
-    [TOGGLE_OPEN]: (state) => state.set('open', !state.get('open')),
+    [OPEN]: (state) => state.set('open', true),
+    [CLOSE]: (state) => state.set('open', false),
   },
   initialState
 );
