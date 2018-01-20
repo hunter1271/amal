@@ -11,6 +11,9 @@ import ClickAwayListener from 'material-ui/utils/ClickAwayListener';
 import Paper from 'material-ui/Paper';
 import Grow from 'material-ui/transitions/Grow';
 import Divider from 'material-ui/Divider';
+import { FormattedMessage } from 'react-intl';
+
+import messages from './messages';
 
 UserMenu.propTypes = {
   signedIn: bool,
@@ -55,10 +58,12 @@ function UserMenu({
               <Paper id="user-menu">
                 <MenuList role="menu" onClick={onMenuClose}>
                   <MenuItem component={NavLink} to={accountPath}>
-                    My account
+                    <FormattedMessage {...messages.profile} />
                   </MenuItem>
                   <Divider />
-                  <MenuItem onClick={onSignOff}>Sign off</MenuItem>
+                  <MenuItem onClick={onSignOff}>
+                    <FormattedMessage {...messages.signOut} />
+                  </MenuItem>
                 </MenuList>
               </Paper>
             </Grow>
@@ -70,7 +75,7 @@ function UserMenu({
 
   return (
     <Button color="contrast" to={signInPath} component={Link}>
-      Sign In
+      <FormattedMessage {...messages.signIn} />
     </Button>
   );
 }

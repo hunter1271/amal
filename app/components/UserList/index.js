@@ -1,7 +1,6 @@
 import React from 'react';
 import { arrayOf, object } from 'prop-types';
 import { compose, pure } from 'recompose';
-import Paper from 'material-ui/Paper';
 import Toolbar from 'material-ui/Toolbar';
 import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
@@ -21,9 +20,9 @@ UserList.propTypes = {
 
 function UserList() {
   return (
-    <Paper>
+    <div>
       <Toolbar>
-        <Typography type="title">Users</Typography>
+        <Typography type="subheading">Users</Typography>
         <div>
           <IconButton aria-label="Filter list">
             <FilterListIcon />
@@ -77,7 +76,7 @@ function UserList() {
           </TableRow>
         </TableFooter>
       </Table>
-    </Paper>
+    </div>
   );
 }
 

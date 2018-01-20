@@ -6,7 +6,7 @@
  */
 import { addLocaleData } from 'react-intl';
 import enLocaleData from 'react-intl/locale-data/en';
-import deLocaleData from 'react-intl/locale-data/de';
+import ruLocaleData from 'react-intl/locale-data/ru';
 
 import { DEFAULT_LOCALE } from '../app/containers/App/constants';
 
@@ -15,7 +15,7 @@ import ruTranslationMessages from './translations/ru.json';
 import tatTranslationMessages from './translations/tat.json';
 
 addLocaleData(enLocaleData);
-addLocaleData(deLocaleData);
+addLocaleData(ruLocaleData);
 
 export const appLocales = ['en', 'tat', 'ru'];
 

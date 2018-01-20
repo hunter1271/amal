@@ -7,6 +7,7 @@ import Drawer from 'material-ui/Drawer';
 import Divider from 'material-ui/Divider';
 import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import { Inbox, Drafts, Settings } from 'material-ui-icons';
+import { Link } from 'react-router-dom';
 
 Sidebar.propTypes = {
   open: bool,
@@ -48,6 +49,8 @@ const styles = (theme) => ({
 });
 
 function Sidebar({ open, classes }) {
+  const listItemClass = open ? '' : classes.buttonNarrow;
+
   return (
     <Drawer
       open={open}
@@ -62,20 +65,25 @@ function Sidebar({ open, classes }) {
       <div className={classes.drawerInner}>
         <div className={classes.drawerHeader} />
         <List>
-          <ListItem button className={!open && classes.buttonNarrow}>
+          <ListItem button className={listItemClass}>
             <ListItemIcon>
               <Inbox />
             </ListItemIcon>
             <ListItemText primary="Inbox" />
           </ListItem>
-          <ListItem button className={!open && classes.buttonNarrow}>
+          <ListItem button className={listItemClass}>
             <ListItemIcon>
               <Drafts />
             </ListItemIcon>
             <ListItemText primary="Drafts" />
           </ListItem>
           <Divider />
-          <ListItem button className={!open && classes.buttonNarrow}>
+          <ListItem
+            button
+            component={Link}
+            to="/config"
+            className={listItemClass}
+          >
             <ListItemIcon>
               <Settings />
             </ListItemIcon>

@@ -22,7 +22,7 @@ LocaleToggle.propTypes = {
 };
 
 LocaleToggle.defaultProps = {
-  menuOpened: false,
+  open: false,
 };
 
 function LocaleToggle({
@@ -48,7 +48,7 @@ function LocaleToggle({
           <Language />
         </IconButton>
       </Target>
-      <Popper placement="bottom-start" eventsEnabled={open}>
+      <Popper placement="bottom" eventsEnabled={open}>
         <ClickAwayListener onClickAway={onClose}>
           <Grow in={open}>
             <Paper id="locale-menu">
