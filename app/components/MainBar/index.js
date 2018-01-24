@@ -24,7 +24,7 @@ MainBar.defaultProps = {
 const styles = (theme) => ({
   appBar: {
     position: 'absolute',
-    zIndex: theme.zIndex.navDrawer + 1,
+    zIndex: theme.zIndex.drawer + 1,
   },
   flex: {
     flex: 1,
@@ -41,7 +41,7 @@ function MainBar({ classes, userMenu, onMenuClick }) {
       <Toolbar>
         <IconButton
           onClick={onMenuClick}
-          color="contrast"
+          color="inherit"
           aria-label="open drawer"
           className={classes.menuButton}
         >
@@ -50,7 +50,7 @@ function MainBar({ classes, userMenu, onMenuClick }) {
         <Typography type="title" color="inherit" className={classes.flex}>
           Dashboard
         </Typography>
-        <LocaleToggle color="contrast" />
+        <LocaleToggle color="inherit" />
         {userMenu && <div>{userMenu}</div>}
       </Toolbar>
     </AppBar>

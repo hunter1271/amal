@@ -44,7 +44,7 @@ function UserMenu({
       <Manager>
         <Target>
           <IconButton
-            color="contrast"
+            color="inherit"
             onClick={onMenuOpen}
             aria-owns={menuOpened ? 'user-menu' : null}
             aria-haspopup="true"
@@ -74,7 +74,7 @@ function UserMenu({
   }
 
   return (
-    <Button color="contrast" to={signInPath} component={Link}>
+    <Button color="inherit" to={signInPath} component={Link}>
       <FormattedMessage {...messages.signIn} />
     </Button>
   );

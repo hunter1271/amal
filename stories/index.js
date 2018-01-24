@@ -13,6 +13,8 @@ import createHistory from 'history/createBrowserHistory';
 import { MuiThemeProvider } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 
+import LanguageProvider from '../app/containers/LanguageProvider';
+
 import SignInForm from '../app/components/SignInForm';
 import MainBar from '../app/components/MainBar';
 import UserDetails from '../app/components/UserDetails';
@@ -22,11 +24,17 @@ import configureStore from '../app/configureStore';
 import LocaleToggle from '../app/components/LocaleToggle';
 
 import theme from '../app/theme';
+import { translationMessages } from '../app/i18n';
 
+import InviteFormStory from './Admin/InviteFormStory';
 import UserListStory from './UserListStory';
 
 const withTheme = (story) => (
   <MuiThemeProvider theme={theme}>{story()}</MuiThemeProvider>
+);
+
+const withLanguage = (story) => (
+  <LanguageProvider messages={translationMessages}>{story()}</LanguageProvider>
 );
 
 // Create redux store with history
@@ -36,6 +44,7 @@ const store = configureStore(initialState, history);
 
 const withStore = (story) => <Provider store={store}>{story()}</Provider>;
 
+addDecorator(withLanguage);
 addDecorator(withTheme);
 addDecorator(withKnobs);
 addDecorator(StoryRouter());
@@ -112,4 +121,6 @@ storiesOf('Navigation', module)
     />
   ));
 
-storiesOf('Admin', module).add('User list', UserListStory);
+storiesOf('Admin', module)
+  .add('User list', UserListStory)
+  .add('Invite form', InviteFormStory);
