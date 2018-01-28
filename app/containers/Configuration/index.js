@@ -7,10 +7,10 @@ import Tabs, { Tab } from 'material-ui/Tabs';
 import Button from 'material-ui/Button';
 import AddIcon from 'material-ui-icons/Add';
 import { withStyles } from 'material-ui/styles';
-import { Link, NavLink, Switch, Route, withRouter } from 'react-router-dom';
+import { NavLink, Switch, Route, withRouter } from 'react-router-dom';
 import UserList from 'components/UserList';
 import UnderConstruction from 'components/UnderConstruction';
-import InviteForm from 'components/InviteForm';
+import InviteForm from 'containers/InviteForm';
 import Zoom from 'material-ui/transitions/Zoom';
 
 const styles = (theme) => ({
@@ -66,17 +66,11 @@ function Configuration({ classes, match, location }) {
           component={UnderConstruction}
         />
       </Switch>
-      <Route exact path={`${match.url}/users/invite`} component={InviteForm} />
+      <InviteForm />
       <Switch>
         <Route exact path={`${match.url}/users`}>
           <Zoom in timeout={500}>
-            <Button
-              fab
-              className={classes.fab}
-              color="primary"
-              component={Link}
-              to={`${match.url}/users/invite`}
-            >
+            <Button fab className={classes.fab} color="primary">
               <AddIcon />
             </Button>
           </Zoom>

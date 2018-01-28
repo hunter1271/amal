@@ -1,5 +1,5 @@
 import React from 'react';
-import { object, func, bool } from 'prop-types';
+import { object, func, bool, string } from 'prop-types';
 import { connect } from 'react-redux';
 import { compose, pure } from 'recompose';
 import { FormattedMessage } from 'react-intl';
@@ -18,11 +18,20 @@ import { withStyles } from 'material-ui/styles';
 
 import messages from './messages';
 
+const renderField = (props) => (
+  // console.log(props);
+  <TextField {...props} />
+);
+
 InviteForm.propTypes = {
   submitting: bool,
+  invalid: bool,
+  submitFailed: bool,
   classes: object.isRequired,
   onSubmit: func.isRequired,
   handleSubmit: func.isRequired,
+  onClose: func,
+  error: string,
 };
 
 const styles = () => ({
@@ -38,19 +47,33 @@ const styles = () => ({
   },
 });
 
-function InviteForm({ submitting, classes, onSubmit, handleSubmit, ...rest }) {
+function InviteForm({
+  submitting,
+  invalid,
+  submitFailed,
+  classes,
+  onSubmit,
+  handleSubmit,
+  onClose,
+  error,
+  ...rest
+}) {
   return (
     <Dialog {...rest} aria-labelledby="form-dialog-title">
       <DialogTitle id="form-dialog-title">
         <FormattedMessage {...messages.title} />
+        <br />
+        {submitFailed && 'submitFailed'}
+        <br />
+        {error}
       </DialogTitle>
       <DialogContent>
         <DialogContentText>
           <FormattedMessage {...messages.description} />
         </DialogContentText>
         <Field
-          name="email"
-          component={TextField}
+          name="uemail"
+          component={renderField}
           autoFocus
           label={<FormattedMessage {...messages.emailFieldLabel} />}
           type="email"
@@ -60,14 +83,20 @@ function InviteForm({ submitting, classes, onSubmit, handleSubmit, ...rest }) {
         />
       </DialogContent>
       <DialogActions>
-        <Button color="primary" disabled={submitting}>
+        <Button color="primary" disabled={submitting} onClick={onClose}>
           <FormattedMessage {...messages.cancelAction} />
         </Button>
         <div className={classes.wrapper}>
-          <Button color="primary" disabled onClick={handleSubmit(onSubmit)}>
+          <Button
+            color="primary"
+            disabled={submitting || invalid}
+            onClick={handleSubmit(onSubmit)}
+          >
             <FormattedMessage {...messages.inviteAction} />
           </Button>
-          {true && <CircularProgress size={26} className={classes.progress} />}
+          {submitting && (
+            <CircularProgress size={26} className={classes.progress} />
+          )}
         </div>
       </DialogActions>
     </Dialog>
