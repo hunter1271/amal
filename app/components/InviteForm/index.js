@@ -18,12 +18,13 @@ import { withStyles } from 'material-ui/styles';
 
 import messages from './messages';
 
-const renderField = (props) => (
-  // console.log(props);
-  <TextField {...props} />
-);
+// const renderField = (props) => (
+//   // console.log(props);
+//   <TextField {...props} />
+// );
 
 InviteForm.propTypes = {
+  open: bool,
   submitting: bool,
   invalid: bool,
   submitFailed: bool,
@@ -56,10 +57,10 @@ function InviteForm({
   handleSubmit,
   onClose,
   error,
-  ...rest
+  open,
 }) {
   return (
-    <Dialog {...rest} aria-labelledby="form-dialog-title">
+    <Dialog open={open} aria-labelledby="form-dialog-title">
       <DialogTitle id="form-dialog-title">
         <FormattedMessage {...messages.title} />
         <br />
@@ -73,7 +74,7 @@ function InviteForm({
         </DialogContentText>
         <Field
           name="uemail"
-          component={renderField}
+          component={TextField}
           autoFocus
           label={<FormattedMessage {...messages.emailFieldLabel} />}
           type="email"
@@ -104,9 +105,10 @@ function InviteForm({
 }
 
 const valueSelector = formValueSelector('form/inviteUser');
+const withConnect = connect((state) => ({ ...valueSelector(state, 'email') }));
 
 export default compose(
-  connect((state) => valueSelector(state, 'email')),
+  withConnect,
   withStyles(styles),
   reduxForm({
     form: 'form/inviteUser',
