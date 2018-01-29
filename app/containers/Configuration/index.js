@@ -8,10 +8,11 @@ import Button from 'material-ui/Button';
 import AddIcon from 'material-ui-icons/Add';
 import { withStyles } from 'material-ui/styles';
 import { NavLink, Switch, Route, withRouter } from 'react-router-dom';
-import UserList from 'components/UserList';
 import UnderConstruction from 'components/UnderConstruction';
 import InviteForm from 'containers/InviteForm';
 import Zoom from 'material-ui/transitions/Zoom';
+
+import Users from './Users';
 
 const styles = (theme) => ({
   fab: {
@@ -58,7 +59,7 @@ function Configuration({ classes, match, location }) {
         </Tabs>
       </AppBar>
       <Switch>
-        <Route path={`${match.url}/users`} component={UserList} />
+        <Route path={`${match.url}/users`} component={Users} />
         <Route exact path={`${match.url}/deps`} component={UnderConstruction} />
         <Route
           exact
@@ -68,15 +69,11 @@ function Configuration({ classes, match, location }) {
       </Switch>
       <InviteForm />
       <Switch>
-        <Route exact path={`${match.url}/users`}>
-          <Zoom in timeout={500}>
-            <Button fab className={classes.fab} color="primary">
-              <AddIcon />
-            </Button>
-          </Zoom>
-        </Route>
-        <Route exact path={`${match.url}/deps`} />
-        <Route exact path={`${match.url}/products`} />
+        <Zoom in timeout={500}>
+          <Button fab className={classes.fab} color="primary">
+            <AddIcon />
+          </Button>
+        </Zoom>
       </Switch>
     </Paper>
   );

@@ -2,27 +2,20 @@ import React from 'react';
 import { number, boolean } from '@storybook/addon-knobs';
 import { action } from '@storybook/addon-actions';
 import InviteForm from 'components/InviteForm';
-import { SubmissionError } from 'redux-form';
+import { SubmissionError } from 'redux-form/immutable';
 
 function InviteFormStory() {
   const timeout = number('timeout', 1000);
-  const success = boolean('Success', true);
+  const fail = boolean('Fail', true);
+  const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
   const onSubmit = () =>
-    new Promise((resolve, reject) => {
-      setTimeout(() => {
-        if (success) {
-          resolve();
-        } else {
-          reject(
-            new SubmissionError({
-              uemail: 'Some error occured',
-              _error: 'Invalid request',
-            })
-          );
-          // throw new SubmissionError({ email: 'Some error occured' });
-        }
-      }, timeout);
+    sleep(timeout).then(() => {
+      if (fail) {
+        throw new SubmissionError({
+          email: 'Some error with email',
+        });
+      }
     });
 
   return <InviteForm open onSubmit={onSubmit} onClose={action('onClose')} />;

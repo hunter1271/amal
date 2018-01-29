@@ -1,5 +1,5 @@
 import React from 'react';
-import { object, func, bool, string } from 'prop-types';
+import { object, func, bool } from 'prop-types';
 import { connect } from 'react-redux';
 import { compose, pure } from 'recompose';
 import { FormattedMessage } from 'react-intl';
@@ -13,29 +13,26 @@ import Dialog, {
 } from 'material-ui/Dialog';
 import { CircularProgress } from 'material-ui/Progress';
 import { isEmail, isRequired } from 'utils/validators';
-import { Field, reduxForm, formValueSelector } from 'redux-form/immutable';
+import { reduxForm, formValueSelector } from 'redux-form/immutable';
+import { Field } from 'redux-form';
 import { withStyles } from 'material-ui/styles';
 
 import messages from './messages';
-
-// const renderField = (props) => (
-//   // console.log(props);
-//   <TextField {...props} />
-// );
 
 InviteForm.propTypes = {
   open: bool,
   submitting: bool,
   invalid: bool,
-  submitFailed: bool,
   classes: object.isRequired,
   onSubmit: func.isRequired,
   handleSubmit: func.isRequired,
   onClose: func,
-  error: string,
 };
 
 const styles = () => ({
+  root: {
+    minHeight: 285,
+  },
   wrapper: {
     position: 'relative',
   },
@@ -51,29 +48,27 @@ const styles = () => ({
 function InviteForm({
   submitting,
   invalid,
-  submitFailed,
   classes,
   onSubmit,
   handleSubmit,
   onClose,
-  error,
   open,
 }) {
   return (
-    <Dialog open={open} aria-labelledby="form-dialog-title">
+    <Dialog
+      className={classes.root}
+      open={open}
+      aria-labelledby="form-dialog-title"
+    >
       <DialogTitle id="form-dialog-title">
         <FormattedMessage {...messages.title} />
-        <br />
-        {submitFailed && 'submitFailed'}
-        <br />
-        {error}
       </DialogTitle>
       <DialogContent>
         <DialogContentText>
           <FormattedMessage {...messages.description} />
         </DialogContentText>
         <Field
-          name="uemail"
+          name="email"
           component={TextField}
           autoFocus
           label={<FormattedMessage {...messages.emailFieldLabel} />}
