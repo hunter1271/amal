@@ -72,6 +72,7 @@ function UserList() {
               nextIconButtonProps={{
                 'aria-label': 'Next Page',
               }}
+              onChangePage={() => {}}
             />
           </TableRow>
         </TableFooter>

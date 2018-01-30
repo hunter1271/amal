@@ -3,8 +3,8 @@ import { createDuck } from 'redux-duck';
 
 const ducks = createDuck('inviteForm');
 
-export const INVITE_FORM_REQUEST = ducks.defineType('FORM_REQUEST');
-export const INVITE_FORM_OPEN = ducks.defineType('FORM_OPEN');
+export const INVITE_FORM_REQUEST = ducks.defineType('INVITE_FORM_REQUEST');
+export const INVITE_FORM_OPEN = ducks.defineType('INVITE_FORM_OPEN');
 export const INVITE_FORM_CLOSE = ducks.defineType('INVITE_FORM_CLOSE');
 
 export const inviteFormRequest = ducks.createAction(INVITE_FORM_REQUEST);

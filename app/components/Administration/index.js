@@ -1,12 +1,12 @@
 import React from 'react';
-import { object } from 'prop-types';
+import { object, func } from 'prop-types';
 import { compose, pure } from 'recompose';
 import AppBar from 'material-ui/AppBar';
 import Paper from 'material-ui/Paper';
 import Tabs, { Tab } from 'material-ui/Tabs';
 import Button from 'material-ui/Button';
 import AddIcon from 'material-ui-icons/Add';
-import { withStyles } from 'material-ui/styles';
+import { withTheme, withStyles } from 'material-ui/styles';
 import { NavLink, Switch, Route, withRouter } from 'react-router-dom';
 import UnderConstruction from 'components/UnderConstruction';
 import InviteForm from 'containers/InviteForm';
@@ -26,9 +26,11 @@ Configuration.propTypes = {
   classes: object.isRequired,
   match: object.isRequired,
   location: object.isRequired,
+  theme: object.isRequired,
+  handleAddUser: func,
 };
 
-function Configuration({ classes, match, location }) {
+function Configuration({ classes, match, location, theme, handleAddUser }) {
   return (
     <Paper>
       <AppBar position="static" color="default">
@@ -60,23 +62,30 @@ function Configuration({ classes, match, location }) {
       </AppBar>
       <Switch>
         <Route path={`${match.url}/users`} component={Users} />
-        <Route exact path={`${match.url}/deps`} component={UnderConstruction} />
-        <Route
-          exact
-          path={`${match.url}/products`}
-          component={UnderConstruction}
-        />
+        <Route path={`${match.url}/deps`} component={UnderConstruction} />
+        <Route path={`${match.url}/products`} component={UnderConstruction} />
       </Switch>
       <InviteForm />
-      <Switch>
-        <Zoom in timeout={500}>
-          <Button fab className={classes.fab} color="primary">
+      <div>
+        <Zoom
+          in={location.pathname === `${match.url}/users`}
+          timeout={theme.transitions.duration.enteringScreen}
+          appear={false}
+        >
+          <Button
+            fab
+            className={classes.fab}
+            color="primary"
+            onClick={handleAddUser}
+          >
             <AddIcon />
           </Button>
         </Zoom>
-      </Switch>
+      </div>
     </Paper>
   );
 }
 
-export default compose(withStyles(styles), withRouter, pure)(Configuration);
+export default compose(withTheme(), withStyles(styles), withRouter, pure)(
+  Configuration
+);

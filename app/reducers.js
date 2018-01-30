@@ -12,7 +12,8 @@ import languageProviderReducer from 'containers/LanguageProvider/reducer';
 import authReducer from 'containers/Auth/ducks';
 import userMenuReducer from 'containers/UserMenuConnected/ducks';
 import sidebarReducer from 'containers/SidebarConnected/ducks';
-import localeToggleReducer from 'containers/LocaleToggle/ducks';
+// import localeToggleReducer from 'containers/LocaleToggle/ducks';
+// import inviteFormReducer from 'containers/InviteForm/ducks';
 
 /*
  * routeReducer
@@ -54,7 +55,8 @@ export default function createReducer(injectedReducers) {
     userMenu: userMenuReducer,
     sidebar: sidebarReducer,
     form: formReducer,
-    localeToggle: localeToggleReducer,
+    // localeToggle: localeToggleReducer,
+    // inviteForm: inviteFormReducer,
     ...injectedReducers,
   });
 }
