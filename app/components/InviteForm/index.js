@@ -46,13 +46,13 @@ const styles = () => ({
 });
 
 function InviteForm({
+  open,
   submitting,
   invalid,
   classes,
   onSubmit,
   handleSubmit,
   onClose,
-  open,
 }) {
   return (
     <Dialog
@@ -75,7 +75,7 @@ function InviteForm({
           type="email"
           fullWidth
           disabled={submitting}
-          validate={[isRequired, isEmail]}
+          validate={[isEmail, isRequired]}
         />
       </DialogContent>
       <DialogActions>

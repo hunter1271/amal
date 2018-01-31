@@ -1,8 +1,8 @@
 import { call, getContext, put, takeLatest } from 'redux-saga/effects';
-import { inviteFormClose, INVITE_FORM_REQUEST } from './ducks';
+import { close, REQUEST } from './ducks';
 
 export default function* () {
-  yield takeLatest(INVITE_FORM_REQUEST, requestSaga);
+  yield takeLatest(REQUEST, requestSaga);
 }
 
 export function* requestSaga({ payload: { values, resolve, reject } }) {
@@ -12,7 +12,7 @@ export function* requestSaga({ payload: { values, resolve, reject } }) {
 
   if (response) {
     resolve();
-    yield put(inviteFormClose());
+    yield put(close());
   } else {
     reject(errors);
   }

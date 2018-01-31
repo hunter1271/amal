@@ -5,7 +5,7 @@ import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
 import InviteForm from 'components/InviteForm';
 import { selectOpen } from './selectors';
-import reducer, { inviteFormRequest, inviteFormClose } from './ducks';
+import reducer, { request, close } from './ducks';
 import saga from './sagas';
 
 const mapStateToProps = createStructuredSelector({
@@ -13,10 +13,12 @@ const mapStateToProps = createStructuredSelector({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onClose: inviteFormClose,
+  onClose: () => {
+    dispatch(close());
+  },
   onSubmit: (values) =>
     new Promise((resolve, reject) =>
-      dispatch(inviteFormRequest({ values, resolve, reject }))
+      dispatch(request({ values, resolve, reject }))
     ),
 });
 

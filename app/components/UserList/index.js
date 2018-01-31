@@ -10,7 +10,7 @@ import Table, {
   TableCell,
   TableFooter,
   TableHead,
-  TablePagination,
+  // TablePagination,
   TableRow,
 } from 'material-ui/Table';
 
@@ -60,7 +60,7 @@ function UserList() {
         </TableBody>
         <TableFooter>
           <TableRow>
-            <TablePagination
+            {/* <TablePagination
               colSpan={4}
               count={20}
               rowsPerPage={10}
@@ -73,7 +73,7 @@ function UserList() {
                 'aria-label': 'Next Page',
               }}
               onChangePage={() => {}}
-            />
+            /> */}
           </TableRow>
         </TableFooter>
       </Table>
