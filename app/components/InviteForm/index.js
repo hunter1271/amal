@@ -102,11 +102,13 @@ function InviteForm({
 const valueSelector = formValueSelector('form/inviteUser');
 const withConnect = connect((state) => ({ ...valueSelector(state, 'email') }));
 
+export const FORM_NAME = 'form/inviteUser';
+
 export default compose(
   withConnect,
   withStyles(styles),
   reduxForm({
-    form: 'form/inviteUser',
+    form: FORM_NAME,
   }),
   pure
 )(InviteForm);

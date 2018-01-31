@@ -7,8 +7,8 @@ router.post('/invite-user', (request, response) => {
     response.json({ success: true });
   } else {
     response
-      .json({ validation_errors: { email: 'This email is invalid' } })
-      .status(400);
+      .status(400)
+      .json({ validation_errors: { email: 'This email is invalid' } });
   }
 });
 

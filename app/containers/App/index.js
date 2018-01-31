@@ -13,7 +13,7 @@ export default function App() {
         <Switch>
           <Route exact path="/" component={() => <p>Main</p>} />
           <Route strict path="/account" component={UserDetails} />
-          <Route strict path="/config" component={Administration} />
+          <Route strict path="/admin" component={Administration} />
         </Switch>
       </Layout>
     </Switch>

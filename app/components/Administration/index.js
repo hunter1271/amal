@@ -6,8 +6,9 @@ import Paper from 'material-ui/Paper';
 import Tabs, { Tab } from 'material-ui/Tabs';
 import Button from 'material-ui/Button';
 import AddIcon from 'material-ui-icons/Add';
+import UpIcon from 'material-ui-icons/KeyboardArrowUp';
 import { withTheme, withStyles } from 'material-ui/styles';
-import { NavLink, Switch, Route, withRouter } from 'react-router-dom';
+import { NavLink, Switch, Route, withRouter, Redirect } from 'react-router-dom';
 import UnderConstruction from 'components/UnderConstruction';
 import Zoom from 'material-ui/transitions/Zoom';
 
@@ -30,6 +31,11 @@ Configuration.propTypes = {
 };
 
 function Configuration({ classes, match, location, theme, handleAddUser }) {
+  const transitionDuration = {
+    enter: theme.transitions.duration.enteringScreen,
+    exit: theme.transitions.duration.leavingScreen,
+  };
+
   return (
     <Paper>
       <AppBar position="static" color="default">
@@ -60,6 +66,7 @@ function Configuration({ classes, match, location, theme, handleAddUser }) {
         </Tabs>
       </AppBar>
       <Switch>
+        <Redirect exact from={match.url} to={`${match.url}/users`} />
         <Route path={`${match.url}/users`} component={Users} />
         <Route path={`${match.url}/deps`} component={UnderConstruction} />
         <Route path={`${match.url}/products`} component={UnderConstruction} />
@@ -67,8 +74,10 @@ function Configuration({ classes, match, location, theme, handleAddUser }) {
       <div>
         <Zoom
           in={location.pathname === `${match.url}/users`}
-          timeout={theme.transitions.duration.enteringScreen}
+          timeout={transitionDuration}
+          enterDelay={transitionDuration.exit}
           appear={false}
+          unmountOnExit
         >
           <Button
             fab
@@ -77,6 +86,28 @@ function Configuration({ classes, match, location, theme, handleAddUser }) {
             onClick={handleAddUser}
           >
             <AddIcon />
+          </Button>
+        </Zoom>
+        <Zoom
+          in={location.pathname === `${match.url}/deps`}
+          timeout={transitionDuration}
+          enterDelay={transitionDuration.exit}
+          appear={false}
+          unmountOnExit
+        >
+          <Button fab className={classes.fab} color="inherit">
+            <UpIcon />
+          </Button>
+        </Zoom>
+        <Zoom
+          in={location.pathname === `${match.url}/products`}
+          timeout={transitionDuration}
+          enterDelay={transitionDuration.exit}
+          appear={false}
+          unmountOnExit
+        >
+          <Button fab className={classes.fab} color="inherit">
+            <UpIcon />
           </Button>
         </Zoom>
       </div>

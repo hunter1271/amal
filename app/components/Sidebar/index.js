@@ -81,7 +81,7 @@ function Sidebar({ open, classes }) {
           <ListItem
             button
             component={Link}
-            to="/config"
+            to="/admin"
             className={listItemClass}
           >
             <ListItemIcon>
