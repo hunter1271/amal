@@ -1,6 +1,6 @@
 const token = (axios) => (username, password) =>
   axios
-    .post('api/v1/auth/token', {
+    .post('/api/v1/auth/token', {
       username,
       password,
     })

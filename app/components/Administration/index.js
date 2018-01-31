@@ -9,7 +9,6 @@ import AddIcon from 'material-ui-icons/Add';
 import { withTheme, withStyles } from 'material-ui/styles';
 import { NavLink, Switch, Route, withRouter } from 'react-router-dom';
 import UnderConstruction from 'components/UnderConstruction';
-import InviteForm from 'containers/InviteForm';
 import Zoom from 'material-ui/transitions/Zoom';
 
 import Users from './Users';
@@ -65,7 +64,6 @@ function Configuration({ classes, match, location, theme, handleAddUser }) {
         <Route path={`${match.url}/deps`} component={UnderConstruction} />
         <Route path={`${match.url}/products`} component={UnderConstruction} />
       </Switch>
-      <InviteForm />
       <div>
         <Zoom
           in={location.pathname === `${match.url}/users`}
