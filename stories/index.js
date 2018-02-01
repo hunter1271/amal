@@ -27,6 +27,7 @@ import theme from '../app/theme';
 import { translationMessages } from '../app/i18n';
 
 import InviteFormStory from './Admin/InviteFormStory';
+import { InviteActivationStory } from './Auth';
 import UserListStory from './UserListStory';
 
 const withTheme = (story) => (
@@ -77,7 +78,8 @@ storiesOf('Auth', module)
       username={text('username', 'ahmad@mail.com')}
       accessToken={text('Access token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9')}
     />
-  ));
+  ))
+  .add('InviteActivation', InviteActivationStory);
 
 storiesOf('Navigation', module)
   .add('Main bar', () => {

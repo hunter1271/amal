@@ -1,0 +1,1 @@
+export InviteActivationStory from './InviteActivationStory';

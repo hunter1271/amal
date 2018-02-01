@@ -13,8 +13,8 @@ import Dialog, {
 } from 'material-ui/Dialog';
 import { CircularProgress } from 'material-ui/Progress';
 import { isEmail, isRequired } from 'utils/validators';
-import { reduxForm, formValueSelector } from 'redux-form/immutable';
-import { Field } from 'redux-form';
+import { reduxForm, formValueSelector, Field } from 'redux-form/immutable';
+// import { Field } from 'redux-form';
 import { withStyles } from 'material-ui/styles';
 
 import messages from './messages';
