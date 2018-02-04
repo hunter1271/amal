@@ -17,7 +17,6 @@ import LanguageProvider from '../app/containers/LanguageProvider';
 
 import SignInForm from '../app/components/SignInForm';
 import MainBar from '../app/components/MainBar';
-import UserDetails from '../app/components/UserDetails';
 import UserMenu from '../app/components/UserMenu';
 import Sidebar from '../app/components/Sidebar';
 import configureStore from '../app/configureStore';
@@ -27,7 +26,7 @@ import theme from '../app/theme';
 import { translationMessages } from '../app/i18n';
 
 import InviteFormStory from './Admin/InviteFormStory';
-import { InviteActivationStory } from './Auth';
+import { InviteActivationStory, UserProfileStory } from './Auth';
 import UserListStory from './UserListStory';
 
 const withTheme = (story) => (
@@ -71,14 +70,7 @@ storiesOf('Auth', module)
       onSubmit={action('onSubmit')}
     />
   ))
-  .add('User details', () => (
-    <UserDetails
-      firstName={text('First name', 'Ahmad')}
-      lastName={text('Last name', 'al Hanbal')}
-      username={text('username', 'ahmad@mail.com')}
-      accessToken={text('Access token', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9')}
-    />
-  ))
+  .add('User profile', UserProfileStory)
   .add('InviteActivation', InviteActivationStory);
 
 storiesOf('Navigation', module)

@@ -23,6 +23,7 @@ InviteForm.propTypes = {
   open: bool,
   submitting: bool,
   invalid: bool,
+  pristine: bool,
   classes: object.isRequired,
   onSubmit: func.isRequired,
   handleSubmit: func.isRequired,
@@ -53,6 +54,7 @@ function InviteForm({
   onSubmit,
   handleSubmit,
   onClose,
+  pristine,
 }) {
   return (
     <Dialog
@@ -85,7 +87,7 @@ function InviteForm({
         <div className={classes.wrapper}>
           <Button
             color="primary"
-            disabled={submitting || invalid}
+            disabled={submitting || invalid || pristine}
             onClick={handleSubmit(onSubmit)}
           >
             <FormattedMessage {...messages.inviteAction} />

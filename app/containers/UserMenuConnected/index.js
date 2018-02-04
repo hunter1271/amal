@@ -15,7 +15,7 @@ const mapStateToProps = createStructuredSelector({
 
 const initWithProps = withProps(({ match }) => ({
   signInPath: `${match.url}signin`,
-  accountPath: `${match.url}account`,
+  accountPath: `${match.url}profile`,
 }));
 
 const mapDispatchToProps = {
