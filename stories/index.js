@@ -70,7 +70,7 @@ storiesOf('Auth', module)
       onSubmit={action('onSubmit')}
     />
   ))
-  .add('User profile', UserProfileStory)
+  .add('UserProfile', UserProfileStory)
   .add('InviteActivation', InviteActivationStory);
 
 storiesOf('Navigation', module)
