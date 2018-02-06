@@ -32,9 +32,11 @@ function InviteActivation({ classes, error }) {
     <Dialog open>
       <DialogTitle>{<FormattedMessage {...messages.title} />}</DialogTitle>
       <DialogContent className={classes.content}>
-        <DialogContentText>
-          {error || <LinearProgress variant="query" />}
-        </DialogContentText>
+        {error ? (
+          <DialogContentText>{error}</DialogContentText>
+        ) : (
+          <LinearProgress variant="query" />
+        )}
       </DialogContent>
     </Dialog>
   );
