@@ -40,19 +40,19 @@ function UserList() {
         </TableHead>
         <TableBody>
           <TableRow hover>
-            <TableCell>Rustam Sgadiev</TableCell>
+            <TableCell>Rustam Sagdiev</TableCell>
             <TableCell>rrrpost@server.zone</TableCell>
             <TableCell>Sales</TableCell>
             <TableCell>Yes</TableCell>
           </TableRow>
           <TableRow hover>
-            <TableCell>Rustam Sgadiev</TableCell>
+            <TableCell>Rustam Sagdiev</TableCell>
             <TableCell>rrrpost@server.zone</TableCell>
             <TableCell>Sales</TableCell>
             <TableCell>Yes</TableCell>
           </TableRow>
           <TableRow hover>
-            <TableCell>Rustam Sgadiev</TableCell>
+            <TableCell>Rustam Sagdiev</TableCell>
             <TableCell>rrrpost@server.zone</TableCell>
             <TableCell>Sales</TableCell>
             <TableCell>Yes</TableCell>
