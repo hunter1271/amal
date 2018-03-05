@@ -1,3 +1,5 @@
+import { stringify } from 'qs';
+
 const activateInvite = (axios) => (hash) =>
   axios
     .post('/api/v1/auth/activate-invite', {
@@ -7,14 +9,20 @@ const activateInvite = (axios) => (hash) =>
     .catch(({ response }) => ({ error: response.data }));
 
 const token = (axios) => (username, password) =>
-  axios
-    .post('/api/v1/auth/token', {
-      username,
-      password,
-    })
+  axios({
+    method: 'POST',
+    url: '/api/v1/login_check',
+    data: stringify({
+      _username: username,
+      _password: password,
+    }),
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+  })
     .then(({ data }) => ({
       response: {
-        accessToken: data.access_token,
+        token: data.token,
         refreshToken: data.refresh_token,
         userData: data.user_data,
       },

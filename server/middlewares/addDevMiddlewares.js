@@ -2,9 +2,6 @@ const path = require('path');
 const webpack = require('webpack');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
-const proxy = require('http-proxy-middleware');
-
-const API_URL = 'http://dev.loc/';
 
 function createWebpackMiddleware(compiler, publicPath) {
   return webpackDevMiddleware(compiler, {
@@ -24,14 +21,6 @@ module.exports = function addDevMiddlewares(app, webpackConfig) {
 
   app.use(middleware);
   app.use(webpackHotMiddleware(compiler));
-  if (process.env.ENABLE_PROXY) {
-    app.use(
-      proxy('/api', {
-        target: API_URL,
-        changeOrigin: true,
-      })
-    );
-  }
 
   // Since webpackDevMiddleware uses memory-fs internally to store build
   // artifacts, we use it instead

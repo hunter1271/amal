@@ -13,11 +13,22 @@ const ngrok =
     : false;
 const resolve = require('path').resolve;
 const app = express();
+const proxy = require('http-proxy-middleware');
+const API_URL = 'http://127.0.0.1:8000/';
 const mockApi = require('./api');
 
-// If you need a backend, e.g. an API, add your custom backend-specific middleware here
-// app.use('/api', myApi);
-app.use('/api/v1', mockApi);
+if (process.env.ENABLE_PROXY) {
+  app.use(
+    proxy('/api', {
+      target: API_URL,
+      changeOrigin: true,
+    })
+  );
+} else {
+  // If you need a backend, e.g. an API, add your custom backend-specific middleware here
+  // app.use('/api', myApi)
+  app.use('/api/v1', mockApi);
+}
 
 // In production we need to pass these values in instead of relying on webpack
 setup(app, {
