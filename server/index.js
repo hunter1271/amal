@@ -14,7 +14,7 @@ const ngrok =
 const resolve = require('path').resolve;
 const app = express();
 const proxy = require('http-proxy-middleware');
-const API_URL = 'http://127.0.0.1:8000/';
+const API_URL = 'http://127.0.0.1:8080/';
 const mockApi = require('./api');
 
 if (process.env.ENABLE_PROXY) {
