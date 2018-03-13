@@ -1,4 +1,5 @@
 import { stringify } from 'qs';
+import { ret, err } from './index';
 
 const activateInvite = (axios) => (hash) =>
   axios
@@ -19,15 +20,7 @@ const token = (axios) => (username, password) =>
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
     },
-  })
-    .then(({ data }) => ({
-      response: {
-        token: data.token,
-        refreshToken: data.refresh_token,
-        userData: data.user_data,
-      },
-    }))
-    .catch((error) => ({ error }));
+  }).then(ret, err);
 
 export default (axios) => ({
   token: token(axios),
