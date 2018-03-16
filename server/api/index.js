@@ -9,7 +9,7 @@ router.get('/', (request, response) => {
   response.json({ api: 'v1' });
 });
 
-router.use('/auth', auth);
+router.use('/', auth);
 router.use('/admin', admin);
 router.use('./profile', profile);
 

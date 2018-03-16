@@ -1,6 +1,7 @@
 [ignore]
 .*/build/.*
-node_modules/*
+./node_modules/immutable/*
+./node_modules/*
 
 [include]
 

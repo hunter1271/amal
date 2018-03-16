@@ -21,6 +21,7 @@ import 'sanitize.css/sanitize.css';
 
 // Import root app
 import App from 'containers/App';
+import appSaga from 'containers/App/sagas';
 
 // Import Language Provider
 
@@ -54,6 +55,7 @@ openSansObserver.load().then(
 const initialState = {};
 const history = createHistory();
 const store = configureStore(initialState, history);
+store.runSaga(appSaga);
 const MOUNT_NODE = document.getElementById('app');
 
 const render = (messages) => {

@@ -13,15 +13,10 @@ router.post('/activate-invite', (request, response) => {
   }
 });
 
-router.post('/token', (request, response) => {
+router.post('/login_check', (request, response) => {
   response.json({
-    access_token: '@@@_access_213_token_@@@',
-    refresh_token: '####_refresh_token_####',
-    user_data: {
-      username: 'username@dev.dev',
-      firstName: 'Rustam',
-      lastName: 'Sagdi',
-    },
+    token:
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwidXNlcm5hbWUiOiJKb2huIERvZSIsInJvbGVzIjpbIlJPTEVfVVNFUiIsIlJPTEVfQURNSU4iXSwiaWF0IjoxNTE2MjM5MDIyfQ.uLDqpGFB7fhTECIJH4Lnmaj7_FFcV9dG4_l6wmTaZvg',
   });
 });
 

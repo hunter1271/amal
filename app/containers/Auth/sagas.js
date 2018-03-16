@@ -1,37 +1,38 @@
 import { call, getContext, put, takeLatest } from 'redux-saga/effects';
 import { push } from 'react-router-redux';
 import {} from 'containers/Authentication';
-import { signInSuccess, signInFail, SIGN_IN_REQUEST } from './ducks';
+import {
+  signInSuccess,
+  SIGN_IN_REQUEST,
+  SIGN_IN_SUCCESS,
+  SIGN_OFF,
+} from './ducks';
+import { setToken, unsetToken } from './storage';
 
 export default function* () {
   yield takeLatest(SIGN_IN_REQUEST, requestSaga);
+  yield takeLatest(SIGN_IN_SUCCESS, updateTokenSaga);
+  yield takeLatest(SIGN_OFF, unsetTokenSaga);
 }
 
 export function* requestSaga({ payload: { values, resolve, reject } }) {
   const api = yield getContext('api');
 
-  // try {
-  //   const { token, user } = yield call(
-  //     api.auth.token,
-  //     values.email,
-  //     values.password
-  //   );
-  // } catch (error) {
-  //   console.log(error);
-  // }
+  try {
+    const { token } = yield call(api.auth.token, values.email, values.password);
 
-  const { response } = yield call(
-    api.auth.token,
-    values.email,
-    values.password
-  );
-
-  if (response) {
-    yield put(signInSuccess(response));
-    resolve('Sign in success');
+    yield put(signInSuccess({ token }));
+    resolve();
     yield put(push('/'));
-  } else {
-    yield put(signInFail('Authentication error'));
-    reject('Sign in failed');
+  } catch (error) {
+    reject(error);
   }
+}
+
+export function* updateTokenSaga({ payload: { token } }) {
+  yield call(setToken, token);
+}
+
+export function* unsetTokenSaga() {
+  yield call(unsetToken);
 }

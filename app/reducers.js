@@ -7,7 +7,6 @@ import { combineReducers } from 'redux-immutable';
 import { LOCATION_CHANGE } from 'react-router-redux';
 import { reducer as formReducer } from 'redux-form';
 
-import globalReducer from 'containers/App/reducer';
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
 import authReducer from 'containers/Auth/ducks';
 import userMenuReducer from 'containers/UserMenuConnected/ducks';
@@ -49,14 +48,11 @@ function routeReducer(state = routeInitialState, action) {
 export default function createReducer(injectedReducers) {
   return combineReducers({
     route: routeReducer,
-    global: globalReducer,
     language: languageProviderReducer,
     auth: authReducer,
     userMenu: userMenuReducer,
     sidebar: sidebarReducer,
     form: formReducer,
-    // localeToggle: localeToggleReducer,
-    // inviteForm: inviteFormReducer,
     ...injectedReducers,
   });
 }
