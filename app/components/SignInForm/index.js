@@ -73,12 +73,15 @@ function SignInForm({
     <Form onSubmit={handleSubmit}>
       <Dialog open className={classes.root}>
         <DialogTitle className={classes.dialogTitle} disableTypography>
-          <Typography className={classes.dialogTitleTypography} type="headline">
+          <Typography
+            className={classes.dialogTitleTypography}
+            variant="headline"
+          >
             Welcome back
           </Typography>
         </DialogTitle>
         <LinearProgress
-          mode={submitting ? 'indeterminate' : 'determinate'}
+          variant={submitting ? 'indeterminate' : 'determinate'}
           value={100}
         />
         <DialogContent>
@@ -108,7 +111,7 @@ function SignInForm({
         <DialogActions className={classes.dialogActions}>
           <Button
             disabled={submitting || invalid}
-            raised
+            variant="raised"
             color="primary"
             className={classes.button}
             type="submit"

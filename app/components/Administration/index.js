@@ -20,6 +20,9 @@ const styles = (theme) => ({
     bottom: theme.spacing.unit * 3,
     right: theme.spacing.unit * 3,
   },
+  zoomer: {
+    transitionDelay: theme.transitions.duration.leavingScreen,
+  },
 });
 
 Configuration.propTypes = {
@@ -75,12 +78,11 @@ function Configuration({ classes, match, location, theme, handleAddUser }) {
         <Zoom
           in={location.pathname === `${match.url}/users`}
           timeout={transitionDuration}
-          enterDelay={transitionDuration.exit}
           appear={false}
           unmountOnExit
         >
           <Button
-            fab
+            variant="fab"
             className={classes.fab}
             color="primary"
             onClick={handleAddUser}
@@ -95,7 +97,7 @@ function Configuration({ classes, match, location, theme, handleAddUser }) {
           appear={false}
           unmountOnExit
         >
-          <Button fab className={classes.fab} color="inherit">
+          <Button variant="fab" className={classes.fab} color="inherit">
             <UpIcon />
           </Button>
         </Zoom>
@@ -106,7 +108,7 @@ function Configuration({ classes, match, location, theme, handleAddUser }) {
           appear={false}
           unmountOnExit
         >
-          <Button fab className={classes.fab} color="inherit">
+          <Button variant="fab" className={classes.fab} color="inherit">
             <UpIcon />
           </Button>
         </Zoom>

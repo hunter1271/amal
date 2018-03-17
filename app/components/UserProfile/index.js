@@ -68,7 +68,7 @@ function UserProfile() {
         </ExpansionPanelDetails>
         <Divider />
         <ExpansionPanelActions>
-          <Button raised color="primary">
+          <Button variant="raised" color="primary">
             Change password
           </Button>
         </ExpansionPanelActions>

@@ -7,7 +7,6 @@ import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
 import Typography from 'material-ui/Typography';
 import { withStyles } from 'material-ui/styles';
-// import LocaleToggle from 'containers/LocaleToggle';
 
 MainBar.propTypes = {
   classes: object.isRequired,
@@ -47,10 +46,9 @@ function MainBar({ classes, userMenu, onMenuClick }) {
         >
           <MenuIcon />
         </IconButton>
-        <Typography type="title" color="inherit" className={classes.flex}>
+        <Typography variant="title" color="inherit" className={classes.flex}>
           Dashboard
         </Typography>
-        {/* <LocaleToggle color="inherit" /> */}
         {userMenu && <div>{userMenu}</div>}
       </Toolbar>
     </AppBar>
