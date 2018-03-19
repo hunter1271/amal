@@ -93,7 +93,7 @@ function Configuration({ classes, match, location, theme, handleAddUser }) {
         <Zoom
           in={location.pathname === `${match.url}/deps`}
           timeout={transitionDuration}
-          enterDelay={transitionDuration.exit}
+          className={classes.zoo}
           appear={false}
           unmountOnExit
         >
@@ -104,7 +104,7 @@ function Configuration({ classes, match, location, theme, handleAddUser }) {
         <Zoom
           in={location.pathname === `${match.url}/products`}
           timeout={transitionDuration}
-          enterDelay={transitionDuration.exit}
+          className={classes.zoo}
           appear={false}
           unmountOnExit
         >

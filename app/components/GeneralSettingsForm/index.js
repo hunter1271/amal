@@ -52,7 +52,7 @@ function GeneralSettingsForm({
   return (
     <ExpansionPanel expanded>
       <ExpansionPanelSummary>
-        <Typography type="subheading">
+        <Typography variant="subheading">
           <FormattedMessage {...messages.title} />
         </Typography>
       </ExpansionPanelSummary>
@@ -100,7 +100,7 @@ function GeneralSettingsForm({
       <ExpansionPanelActions>
         <div className={classes.wrapper}>
           <Button
-            raised
+            variant="raised"
             color="primary"
             disabled={submitting || pristine || invalid}
             onClick={handleSubmit(onSubmit)}

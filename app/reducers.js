@@ -9,7 +9,7 @@ import { reducer as formReducer } from 'redux-form';
 
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
 import authReducer from 'containers/Auth/ducks';
-import userMenuReducer from 'containers/UserMenuConnected/ducks';
+import userMenuReducer from 'containers/UserMenu/ducks';
 import sidebarReducer from 'containers/SidebarConnected/ducks';
 // import localeToggleReducer from 'containers/LocaleToggle/ducks';
 // import inviteFormReducer from 'containers/InviteForm/ducks';

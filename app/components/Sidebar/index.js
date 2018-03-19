@@ -54,7 +54,7 @@ function Sidebar({ open, classes }) {
   return (
     <Drawer
       open={open}
-      type="permanent"
+      variant="permanent"
       classes={{
         paper: classNames(
           classes.drawerPaper,
