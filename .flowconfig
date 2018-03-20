@@ -1,10 +1,17 @@
 [ignore]
 .*/build/.*
-./node_modules/immutable/*
-./node_modules/*
+.*/node_modules/.*
 
 [include]
+node_modules/immutable/dist/immutable.js.flow
 
 [libs]
+flow-typed
 
 [options]
+module.name_mapper='^components\/\(.*\)$' -> '<PROJECT_ROOT>/app/components/\1'
+module.name_mapper='^containers\/\(.*\)$' -> '<PROJECT_ROOT>/app/containers/\1'
+module.name_mapper='^services\/\(.*\)$' -> '<PROJECT_ROOT>/app/services/\1'
+module.name_mapper='^utils\/\(.*\)$' -> '<PROJECT_ROOT>/app/utils/\1'
+
+[strict]

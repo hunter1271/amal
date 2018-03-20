@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/bin/node /usr/share/yarn/bin/yarn.js start
+  /usr/bin/node /usr/share/yarn/bin/yarn.js flow restart
 
 PATH: 
   /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
@@ -8,7 +8,7 @@ Yarn version:
   1.5.1
 
 Node version: 
-  8.9.4
+  8.10.0
 
 Platform: 
   linux x64
@@ -61,7 +61,8 @@ npm manifest:
       "test:watch": "cross-env NODE_ENV=test jest --watchAll",
       "coveralls": "cat ./coverage/lcov.info | coveralls",
       "storybook": "start-storybook -p 6006",
-      "build-storybook": "build-storybook"
+      "build-storybook": "build-storybook",
+      "flow": "flow"
     },
     "lint-staged": {
       "*.js": "lint:eslint"
@@ -79,7 +80,8 @@ npm manifest:
           }
         ],
         "react",
-        "stage-0"
+        "stage-0",
+        "flow"
       ],
       "env": {
         "production": {
@@ -175,7 +177,8 @@ npm manifest:
         "react/self-closing-comp": 0,
         "redux-saga/no-yield-in-race": 2,
         "redux-saga/yield-effects": 2,
-        "require-yield": 0
+        "require-yield": 0,
+        "react/prop-types": [0]
       },
       "settings": {
         "import/resolver": {
@@ -294,6 +297,7 @@ npm manifest:
       "babel-preset-env": "1.5.1",
       "babel-preset-react": "6.24.1",
       "babel-preset-stage-0": "6.24.1",
+      "babel-preset-flow": "^6.23.0",
       "circular-dependency-plugin": "3.0.0",
       "coveralls": "2.13.1",
       "css-loader": "0.28.4",
@@ -10319,10 +10323,10 @@ Lockfile:
 
 Trace: 
   Error: Command failed.
-  Exit code: 1
+  Exit code: 12
   Command: sh
-  Arguments: -c cross-env NODE_ENV=development node server
-  Directory: /home/hunter/projects/amal-crm/amal
+  Arguments: -c flow restart
+  Directory: /home/ural/project/amal-crm/amal
   Output:
   
       at ProcessTermError.MessageError (/usr/share/yarn/lib/cli.js:186:110)

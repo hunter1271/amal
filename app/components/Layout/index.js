@@ -10,6 +10,12 @@ import DraftsIcon from 'material-ui-icons/Drafts';
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
 
+type Props = {
+  classes: Object,
+  children: Node,
+  userMenu: Node,
+};
+
 const styles = (theme) => ({
   root: {
     flexGrow: 1,
@@ -39,17 +45,7 @@ const styles = (theme) => ({
   },
 });
 
-function Layout({
-  classes,
-  // expanded,
-  children,
-  userMenu,
-}: {
-  classes: Object,
-  // expanded: boolean,
-  children: React.Node,
-  userMenu: React.Node,
-}): React.Node {
+function Layout({ classes, children, userMenu }: Props): Node {
   return (
     <div className={classes.root}>
       <AppBar position="absolute" className={classes.appBar}>
