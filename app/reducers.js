@@ -8,9 +8,10 @@ import { LOCATION_CHANGE } from 'react-router-redux';
 import { reducer as formReducer } from 'redux-form';
 
 import languageProviderReducer from 'containers/LanguageProvider/reducer';
+import appReducer from 'containers/App/ducks';
 import authReducer from 'containers/Auth/ducks';
 import userMenuReducer from 'containers/UserMenu/ducks';
-import sidebarReducer from 'containers/SidebarConnected/ducks';
+// import sidebarReducer from 'containers/SidebarConnected/ducks';
 // import localeToggleReducer from 'containers/LocaleToggle/ducks';
 // import inviteFormReducer from 'containers/InviteForm/ducks';
 
@@ -51,8 +52,8 @@ export default function createReducer(injectedReducers) {
     language: languageProviderReducer,
     auth: authReducer,
     userMenu: userMenuReducer,
-    sidebar: sidebarReducer,
     form: formReducer,
+    app: appReducer,
     ...injectedReducers,
   });
 }

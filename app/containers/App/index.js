@@ -4,7 +4,7 @@ import Auth from 'containers/Auth';
 import UserProfile from 'components/UserProfile';
 import Administration from 'containers/Administration';
 import InviteActivation from 'containers/InviteActivation';
-import Layout from 'components/Layout';
+import Layout from './Layout';
 
 export default function App() {
   return (

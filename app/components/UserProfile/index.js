@@ -37,7 +37,7 @@ function UserProfile() {
       <GeneralSettingsForm />
       <ExpansionPanel expanded>
         <ExpansionPanelSummary>
-          <Typography type="subheading">Change password</Typography>
+          <Typography variant="subheading">Change password</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           <Grid container spacing={40}>

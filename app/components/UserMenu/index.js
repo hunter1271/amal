@@ -1,16 +1,16 @@
 import React from 'react';
-import { bool, string, func } from 'prop-types';
+import { bool, string, func, object } from 'prop-types';
 import { compose, pure } from 'recompose';
 import { NavLink, Link } from 'react-router-dom';
+import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
-import IconButton from 'material-ui/IconButton';
-import AccountCircle from 'material-ui-icons/AccountCircle';
 import { Manager, Target, Popper } from 'react-popper';
 import { MenuItem, MenuList } from 'material-ui/Menu';
 import ClickAwayListener from 'material-ui/utils/ClickAwayListener';
 import Paper from 'material-ui/Paper';
 import Grow from 'material-ui/transitions/Grow';
 import Divider from 'material-ui/Divider';
+import Avatar from 'material-ui/Avatar';
 import { FormattedMessage } from 'react-intl';
 
 import messages from './messages';
@@ -23,12 +23,19 @@ UserMenu.propTypes = {
   menuOpened: bool,
   onMenuClose: func.isRequired,
   onSignOff: func.isRequired,
+  classes: object,
 };
 
 UserMenu.defaultProps = {
   signedIn: false,
   menuOpened: false,
 };
+
+const styles = (theme) => ({
+  avatar: {
+    marginRight: theme.spacing.unit,
+  },
+});
 
 function UserMenu({
   signedIn,
@@ -38,19 +45,21 @@ function UserMenu({
   menuOpened,
   onMenuClose,
   onSignOff,
+  classes,
 }) {
   if (signedIn) {
     return (
       <Manager>
         <Target>
-          <IconButton
+          <Button
             color="inherit"
             onClick={onMenuOpen}
             aria-owns={menuOpened ? 'user-menu' : null}
             aria-haspopup="true"
           >
-            <AccountCircle />
-          </IconButton>
+            <Avatar className={classes.avatar}>RS</Avatar>
+            Rustam Sagdi
+          </Button>
         </Target>
         <Popper placement="bottom-end" eventsEnabled={menuOpened}>
           <ClickAwayListener onClickAway={onMenuClose}>
@@ -80,4 +89,4 @@ function UserMenu({
   );
 }
 
-export default compose(pure)(UserMenu);
+export default compose(withStyles(styles), pure)(UserMenu);

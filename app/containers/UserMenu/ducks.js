@@ -3,11 +3,11 @@ import { createDuck } from 'redux-duck';
 
 const ducks = createDuck('userMenu');
 
-export const USER_MENU_OPEN = ducks.defineType('USER_MENU_OPEN');
-export const USER_MENU_CLOSE = ducks.defineType('USER_MENU_CLOSE');
+export const OPEN = ducks.defineType('OPEN');
+export const CLOSE = ducks.defineType('CLOSE');
 
-export const userMenuOpen = ducks.createAction(USER_MENU_OPEN);
-export const userMenuClose = ducks.createAction(USER_MENU_CLOSE);
+export const userMenuOpen = ducks.createAction(OPEN);
+export const userMenuClose = ducks.createAction(CLOSE);
 
 const initialState = fromJS({
   open: false,
@@ -15,8 +15,8 @@ const initialState = fromJS({
 
 export default ducks.createReducer(
   {
-    [USER_MENU_OPEN]: (state) => state.set('open', true),
-    [USER_MENU_CLOSE]: (state) => state.set('open', false),
+    [OPEN]: (state) => state.set('open', true),
+    [CLOSE]: (state) => state.set('open', false),
   },
   initialState
 );

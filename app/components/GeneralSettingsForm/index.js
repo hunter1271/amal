@@ -68,6 +68,7 @@ function GeneralSettingsForm({
               fullWidth
               required
               validate={[isRequired]}
+              helperText=" "
             />
           </Grid>
           <Grid item md={4} sm={12}>

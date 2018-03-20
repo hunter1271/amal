@@ -1,5 +1,6 @@
 import React from 'react';
 import { compose, pure } from 'recompose';
+import classNames from 'classnames';
 import { withStyles } from 'material-ui/styles';
 import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
@@ -12,14 +13,15 @@ import MenuIcon from 'material-ui-icons/Menu';
 
 type Props = {
   classes: Object,
+  expand: Boolean,
   children: Node,
   userMenu: Node,
+  onToggle: Function,
 };
 
 const styles = (theme) => ({
   root: {
     flexGrow: 1,
-    // height: 430,
     zIndex: 1,
     overflow: 'hidden',
     position: 'relative',
@@ -28,15 +30,30 @@ const styles = (theme) => ({
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
   },
+  appBarTitle: {
+    flex: 1,
+  },
   drawerPaper: {
     position: 'relative',
     width: theme.sidebar.width,
+    overflow: 'hidden',
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+  drawerPaperNarrow: {
+    width: theme.sidebar.narrowWidth,
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
   },
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
     padding: theme.spacing.unit * 3,
-    minWidth: 0, // So the Typography noWrap works
+    minWidth: 0,
   },
   toolbar: theme.mixins.toolbar,
   menuButton: {
@@ -45,7 +62,7 @@ const styles = (theme) => ({
   },
 });
 
-function Layout({ classes, children, userMenu }: Props): Node {
+function Layout({ classes, children, expand, onToggle, userMenu }: Props) {
   return (
     <div className={classes.root}>
       <AppBar position="absolute" className={classes.appBar}>
@@ -54,10 +71,16 @@ function Layout({ classes, children, userMenu }: Props): Node {
             color="inherit"
             aria-label="open drawer"
             className={classes.menuButton}
+            onClick={onToggle}
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="title" color="inherit" noWrap>
+          <Typography
+            variant="title"
+            color="inherit"
+            noWrap
+            className={classes.appBarTitle}
+          >
             Dashbord
           </Typography>
           {userMenu && <div>{userMenu}</div>}
@@ -66,7 +89,10 @@ function Layout({ classes, children, userMenu }: Props): Node {
       <Drawer
         variant="permanent"
         classes={{
-          paper: classes.drawerPaper,
+          paper: classNames(
+            classes.drawerPaper,
+            !expand && classes.drawerPaperNarrow
+          ),
         }}
       >
         <div className={classes.toolbar} />

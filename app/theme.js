@@ -13,7 +13,7 @@ const theme = createMuiTheme({
   },
   sidebar: {
     width: 250,
-    narrowWidth: 60,
+    narrowWidth: 70,
   },
 });
 
