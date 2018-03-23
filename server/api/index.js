@@ -11,6 +11,6 @@ router.get('/', (request, response) => {
 
 router.use('/', auth);
 router.use('/admin', admin);
-router.use('./profile', profile);
+router.use('./user', profile);
 
 module.exports = router;

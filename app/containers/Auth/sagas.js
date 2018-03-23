@@ -7,7 +7,7 @@ import {
   SIGN_IN_SUCCESS,
   SIGN_OFF,
 } from './ducks';
-import { setToken, unsetToken, getToken } from './storage';
+import { setToken, unsetToken, getToken, setUser, getUser } from './storage';
 
 export default function* () {
   yield fork(initFromStorage);
@@ -21,9 +21,13 @@ export function* requestSaga({ payload: { values, resolve, reject } }) {
   const api = yield getContext('api');
 
   try {
-    const { token } = yield call(api.auth.token, values.email, values.password);
+    const { token, user } = yield call(
+      api.auth.token,
+      values.email,
+      values.password
+    );
 
-    yield put(signInSuccess({ token }));
+    yield put(signInSuccess({ token, user }));
     resolve();
     yield put(push('/'));
   } catch (error) {
@@ -31,8 +35,9 @@ export function* requestSaga({ payload: { values, resolve, reject } }) {
   }
 }
 
-export function* updateTokenSaga({ payload: { token } }) {
-  yield call(setToken, token);
+export function* updateTokenSaga({ payload: { token, user } }) {
+  yield fork(setToken, token);
+  yield fork(setUser, user);
 }
 
 export function* unsetTokenSaga() {
@@ -41,8 +46,9 @@ export function* unsetTokenSaga() {
 
 export function* initFromStorage() {
   const token = yield call(getToken);
+  const user = yield call(getUser);
 
   if (token) {
-    yield put(signInSuccess({ token }));
+    yield put(signInSuccess({ token, user }));
   }
 }

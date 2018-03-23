@@ -12,7 +12,7 @@ const activateInvite = (axios) => (hash) =>
 const token = (axios) => (username, password) =>
   axios({
     method: 'POST',
-    url: '/api/v1/login_check',
+    url: '/api/v1/token',
     data: stringify({
       _username: username,
       _password: password,

@@ -1,6 +1,6 @@
 const updateGeneralSettings = (axios) => (firstName, middleName, lastName) =>
   axios
-    .post('/api/v1/profile/general', {
+    .post('/api/v1/profile/common', {
       firstName,
       middleName,
       lastName,

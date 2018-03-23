@@ -4,10 +4,13 @@ import jwtDecode from 'jwt-decode';
 
 const TOKEN = 'token';
 const USER = 'user';
+const ROLES = 'roles';
 
 export function setToken(token: string) {
   localStorage.setItem(TOKEN, token);
-  localStorage.setItem(USER, JSON.stringify(jwtDecode(token)));
+
+  const tokenPayload = jwtDecode(token);
+  localStorage.setItem(ROLES, JSON.stringify(tokenPayload.roles));
 
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 }
@@ -15,12 +18,17 @@ export function setToken(token: string) {
 export function unsetToken() {
   localStorage.removeItem(TOKEN);
   localStorage.removeItem(USER);
+  localStorage.removeItem(ROLES);
 
   delete axios.defaults.headers.common.Authorization;
 }
 
 export function getToken(): ?string {
   return localStorage.getItem(TOKEN);
+}
+
+export function setUser(user: Object) {
+  localStorage.setItem(USER, JSON.stringify(user));
 }
 
 export function getUser(): ?Object {

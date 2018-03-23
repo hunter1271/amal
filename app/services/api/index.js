@@ -16,5 +16,5 @@ export const err = ({ response }) => {
 export default (axios) => ({
   auth: auth(axios),
   admin: admin(axios),
-  profile: profile(axios),
+  user: profile(axios),
 });
